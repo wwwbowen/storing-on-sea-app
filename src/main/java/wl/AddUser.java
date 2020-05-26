@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class Newusers extends JDialog {
+public class AddUser extends JDialog {
 
     private static final long serialVersionUID = -5116968700267175491L;
 
@@ -23,7 +23,7 @@ public class Newusers extends JDialog {
     private JButton ok = new JButton("确定");
     private JButton cancel = new JButton("取消");
 
-    public Newusers() {
+    public AddUser() {
         this.setModal(true);
         this.setSize(400,300);
         this.setLocation(300,300);
@@ -60,18 +60,15 @@ public class Newusers extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Newusers.this.dispose();
+                AddUser.this.dispose();
             }
 
         });
 
-        
-        ok.addActionListener(new ActionListener() {
+        ok.addActionListener(new ActionListener(){
 
             Connection con = null;
             PreparedStatement statement = null;
-            PreparedStatement statement1 = null;
-            ResultSet rs = null;
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,55 +76,32 @@ public class Newusers extends JDialog {
                 String upass = new String(t_pass.getPassword());
                 String repass = new String(t_repass.getPassword());
                 if(uname.length() < 2) {
-                    JOptionPane.showMessageDialog(Newusers.this, "用户名长度需大于两字符！");
+                    JOptionPane.showMessageDialog(AddUser.this, "用户名太短！");
                     return;
                 }
                 if(upass.length() < 2) {
-                    JOptionPane.showMessageDialog(Newusers.this, "密码长度必须大于两字符！");
+                    JOptionPane.showMessageDialog(AddUser.this, "too short");
                     return;
                 }
                 if( !upass.equals(repass) ) {
-                    JOptionPane.showMessageDialog(Newusers.this, "password and confirm password should be the same");
+                    JOptionPane.showMessageDialog(AddUser.this, "password and confirm password should be the same");
                     return;
                 }
+                //后面连接数据库
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","sa","nicai");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("select count(*) from users where user_name= ? and use_pass = ? ");
+                    statement = con.prepareStatement("insert into users values(null, ?,?, 2)");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
-                    rs = statement.executeQuery();
-                    if(rs.next()){
-                        int result = rs.getInt(1);
-                        if (result == 1) {
-                            JOptionPane.showMessageDialog(Newusers.this, "注册失败！用户名已经被注册！");
-
-                            Newusers.this.dispose();
-                        } else {
-                            
-                            statement1 = con.prepareStatement("insert into users values(null,?,?) ");
-                            statement1.setString(1, uname);
-                            statement1.setString(2, upass);
-                            int result1 = statement1.executeUpdate();
-                            if(result1 > 0){
-                                JOptionPane.showMessageDialog(Newusers.this, "添加成功！");
-                                Newusers.this.dispose();
-                            } else {
-                                    JOptionPane.showMessageDialog(Newusers.this, "添加失败");
-                            }
-                            if(statement != null) {
-                                statement.close();
-                            }
-                            if(con != null) {
-                                con.close();
-                            }
-
-                        }
-                    }
-                    if(rs != null) {
-                        rs.close();
+                    int result = statement.executeUpdate();
+                    if(result > 0){
+                        JOptionPane.showMessageDialog(AddUser.this, "添加成功！");
+                        AddUser.this.dispose();
+                    } else {
+                            JOptionPane.showMessageDialog(AddUser.this, "添加失败");
                     }
                     if(statement != null) {
                         statement.close();
@@ -136,14 +110,16 @@ public class Newusers extends JDialog {
                         con.close();
                     }
                 } catch (ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(Newusers.this, "失败!!!");
+                    JOptionPane.showMessageDialog(AddUser.this, "驱动加载失败");
                 } catch (SQLException e1) {
-                    JOptionPane.showMessageDialog(Newusers.this, "失败!!");
+                    JOptionPane.showMessageDialog(AddUser.this, "添加失败");
                     e1.printStackTrace();
                 }
+
             }
+
         });
-    
 
     }
+
 }

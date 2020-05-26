@@ -33,18 +33,21 @@ public class Login extends JFrame {
     public Login() {
         super();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(280, 200);
-        this.setLocation(150, 150);
-        this.setTitle("登录");
+        this.setSize(400, 270);
+        this.setLocation(550, 300);
+        this.setTitle("欢迎使用");
         this.setLayout(new FlowLayout());
         this.setResizable(false);
 
         this.add(l_name);
         l_name.setFont(kaiFont);
+        
         this.add(t_name);
         t_name.setFont(kaiFont);
+        
         this.add(l_pass);
         l_pass.setFont(kaiFont);
+        
         this.add(t_pass);
         t_pass.setFont(kaiFont);
 
