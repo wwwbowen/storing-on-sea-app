@@ -9,7 +9,7 @@ public class AddUser extends JDialog {
 
     private static final long serialVersionUID = -5116968700267175491L;
 
-    private Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
+    private Font kaiFont1 = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
     private JLabel l_name = new JLabel("用户名:");
     private JTextField t_name = new JTextField(12);
@@ -40,21 +40,23 @@ public class AddUser extends JDialog {
         this.add(cancel);
 
         l_name.setBounds(60, 20, 80, 40);
-        l_name.setFont(kaiFont);
+        l_name.setFont(kaiFont1);
         t_name.setBounds(150, 20, 160, 40);
 
         l_pass.setBounds(60, 80, 80, 40);
-        l_pass.setFont(kaiFont);
+        l_pass.setFont(kaiFont1);
         t_pass.setBounds(150, 80, 160, 40);
 
         l_repass.setBounds(60, 140, 80, 40);
-        l_repass.setFont(kaiFont);
+        l_repass.setFont(kaiFont1);
         t_repass.setBounds(150, 140, 160, 40);
 
         ok.setBounds(100, 200, 80, 40);
         cancel.setBounds(240, 200, 80, 40);
-        ok.setFont(kaiFont);
-        cancel.setFont(kaiFont);
+        ok.setFont(kaiFont1);
+        cancel.setFont(kaiFont1);
+
+
 
         cancel.addActionListener(new ActionListener(){
 
