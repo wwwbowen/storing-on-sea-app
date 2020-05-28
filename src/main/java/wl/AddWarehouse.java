@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class AddUser extends JDialog {
+public class AddWarehouse extends JDialog {
 
     private static final long serialVersionUID = -5116968700267175491L;
 
@@ -23,7 +23,7 @@ public class AddUser extends JDialog {
     private JButton ok = new JButton("确定");
     private JButton cancel = new JButton("取消");
 
-    public AddUser() {
+    public AddWarehouse() {
         this.setModal(true);
         this.setSize(400,300);
         this.setLocation(300,300);
@@ -62,7 +62,7 @@ public class AddUser extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddUser.this.dispose();
+                AddWarehouse.this.dispose();
             }
 
         });
@@ -78,32 +78,32 @@ public class AddUser extends JDialog {
                 String upass = new String(t_pass.getPassword());
                 String repass = new String(t_repass.getPassword());
                 if(uname.length() < 2) {
-                    JOptionPane.showMessageDialog(AddUser.this, "用户名太短！");
+                    JOptionPane.showMessageDialog(AddWarehouse.this, "用户名太短！");
                     return;
                 }
                 if(upass.length() < 2) {
-                    JOptionPane.showMessageDialog(AddUser.this, "too short");
+                    JOptionPane.showMessageDialog(AddWarehouse.this, "too short");
                     return;
                 }
                 if( !upass.equals(repass) ) {
-                    JOptionPane.showMessageDialog(AddUser.this, "password and confirm password should be the same");
+                    JOptionPane.showMessageDialog(AddWarehouse.this, "password and confirm password should be the same");
                     return;
                 }
                 //后面连接数据库
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","sa","nicai");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 2)");
+                    statement = con.prepareStatement("insert into users values(null, ?,?, 1)");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     int result = statement.executeUpdate();
                     if(result > 0){
-                        JOptionPane.showMessageDialog(AddUser.this, "添加成功！");
-                        AddUser.this.dispose();
+                        JOptionPane.showMessageDialog(AddWarehouse.this, "添加成功！");
+                        AddWarehouse.this.dispose();
                     } else {
-                            JOptionPane.showMessageDialog(AddUser.this, "添加失败");
+                            JOptionPane.showMessageDialog(AddWarehouse.this, "添加失败");
                     }
                     if(statement != null) {
                         statement.close();
@@ -112,9 +112,9 @@ public class AddUser extends JDialog {
                         con.close();
                     }
                 } catch (ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(AddUser.this, "驱动加载失败");
+                    JOptionPane.showMessageDialog(AddWarehouse.this, "驱动加载失败");
                 } catch (SQLException e1) {
-                    JOptionPane.showMessageDialog(AddUser.this, "添加失败");
+                    JOptionPane.showMessageDialog(AddWarehouse.this, "添加失败");
                     e1.printStackTrace();
                 }
 

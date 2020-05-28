@@ -34,12 +34,12 @@ public class Administrator extends JFrame {
     JMenu menu_Announcement = new JMenu("公告栏");
     JMenuItem menu_Announcement_1  = new JMenuItem("更改公告栏信息");
 
-    private Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
+    private final Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
     public Administrator() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("综合管理");
-        this.setSize(800,600);
+        this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(375, 100);
         this.setJMenuBar(bar);
@@ -86,147 +86,128 @@ public class Administrator extends JFrame {
         menu_Announcement_1.setFont(kaiFont);
         menu_Announcement.add(menu_Announcement_1);
 
-
         menu_user_1.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AddEmployee().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_2.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new DeleteEmployee().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_3.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AddAdmin().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_4.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new DeleteAdmin().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_5.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new SelectUsers().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_6.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AlterEmployee().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_7.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AlterAdmin().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_8.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new Alterpassword().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_user_9.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AlterUsers().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_file_1.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new CheckWarehouse().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_file_2.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AlterWarehouse().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_file_3.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AddWarehouse().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_file_4.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new DeleteWarehouse().setVisible(true);
             }
 
         });
 
-        menu_user_1.addActionListener(new ActionListener() {
+        menu_Announcement_1.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
-            }
-
-        });
-
-        menu_user_1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
-            }
-
-        });
-
-        menu_user_1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser().setVisible(true);
+            public void actionPerformed(final ActionEvent e) {
+                new AddAnnoucement().setVisible(true);
             }
 
         });

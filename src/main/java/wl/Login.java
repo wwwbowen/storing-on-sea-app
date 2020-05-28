@@ -139,7 +139,7 @@ public class Login extends JFrame {
                     con = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
                     // JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("select count(*) from users where user_name= ? and use_pass= ? and state= ?");
+                    statement = con.prepareStatement("select count(*) from users where user_name= ? and user_pass= ? and rid= ?");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     statement.setString(3, state);
@@ -172,21 +172,14 @@ public class Login extends JFrame {
                     JOptionPane.showMessageDialog(Login.this, "数据库连接失败");
                     e1.printStackTrace();
                 }
-
-
-                // if(uname.equals("aa") && upass.equals("123")) {
-                //     JOptionPane.showMessageDialog(Login.this, "登录成功");
-                // } else {
-                //     JOptionPane.showMessageDialog(Login.this, "用户名密码错误！");
-                // }
-
+                
             }
             
         });
 
 
         
-        signButton.addActionListener(new ActionListener() {
+        logButton.addActionListener(new ActionListener() {
 
             Connection con = null;
             PreparedStatement statement = null;
@@ -203,7 +196,7 @@ public class Login extends JFrame {
                     con = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
                     // JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("select count(*) from users where user_name= ? and use_pass= ?");
+                    statement = con.prepareStatement("select count(*) from users where user_name= ? and user_pass= ?");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     rs = statement.executeQuery();
