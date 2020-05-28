@@ -1,6 +1,5 @@
 package wl;
 
-
 import javax.swing.ImageIcon;
 import java.sql.*;
 import java.awt.Font;
@@ -100,28 +99,10 @@ public class Login extends JFrame {
 
         setVisible(true);
         ((JComponent) getContentPane()).setOpaque(false); //将框架强转为容器          
-        ImageIcon img = new ImageIcon("src/main/images/登录界面.jpg"); //传入背景图片路径
-        JLabel background = new JLabel(img);//将图片放进标签里
-        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));//将标签放进容器里
-        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());//设置标签的大小
-        
-        box.addActionListener(new ActionListener() {
-             
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //判断选择选项是否和下拉框数据一致
-                if(box.getSelectedItem().equals("管理员")){
-                    //设置标志量的值
-                   
-                }else if (box.getSelectedItem().equals("职员")) {
-                   
-                } else {
-                    
-                }
-            }
-        });
-
-
+        final ImageIcon img = new ImageIcon("src/main/images/登录背景_1.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
         cancel.addActionListener(new ActionListener() {
 
@@ -132,6 +113,79 @@ public class Login extends JFrame {
 
         });
 
+        signButton.addActionListener(new ActionListener() {
+
+            Connection con = null;
+            PreparedStatement statement = null;
+            ResultSet rs = null;
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                final String uname = t_name.getText();
+                final String upass = new String(t_pass.getPassword());
+                final String state;
+                if(box.getSelectedItem().equals("管理员")){
+                    //设置标志量的值
+                       state = "2";
+                }else if (box.getSelectedItem().equals("职 员")) {
+                       state = "3";
+                } else {
+                       state = "1";
+                }              
+        
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
+                    con = DriverManager.getConnection(
+                            "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
+                    // JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
+                    statement = con.prepareStatement("select count(*) from users where user_name= ? and use_pass= ? and state= ?");
+                    statement.setString(1, uname);
+                    statement.setString(2, upass);
+                    statement.setString(3, state);
+                    rs = statement.executeQuery();
+                    if (rs.next()) {
+                        final int result = rs.getInt(1);
+                        if (result == 1) {
+                            JOptionPane.showMessageDialog(Login.this, "登录成功！");
+                            final Administrator mainFrame = new Administrator();
+                            mainFrame.setVisible(true);
+                            Login.this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(Login.this, "用户名密码错误");
+                            t_name.setText("");
+                            t_pass.setText("");
+                        }
+                    }
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (con != null) {
+                        con.close();
+                    }
+                } catch (final ClassNotFoundException e1) {
+                    JOptionPane.showMessageDialog(Login.this, "驱动加载失败");
+                } catch (final SQLException e1) {
+                    JOptionPane.showMessageDialog(Login.this, "数据库连接失败");
+                    e1.printStackTrace();
+                }
+
+
+                // if(uname.equals("aa") && upass.equals("123")) {
+                //     JOptionPane.showMessageDialog(Login.this, "登录成功");
+                // } else {
+                //     JOptionPane.showMessageDialog(Login.this, "用户名密码错误！");
+                // }
+
+            }
+            
+        });
+
+
+        
         signButton.addActionListener(new ActionListener() {
 
             Connection con = null;
