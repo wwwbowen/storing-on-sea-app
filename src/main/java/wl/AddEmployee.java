@@ -26,7 +26,7 @@ public class AddEmployee extends JDialog {
     public AddEmployee() {
         this.setModal(true);
         this.setSize(400, 300);
-        this.setLocation(300, 300);
+        this.setLocation(575, 300);
         this.setTitle("添加新用户");
         this.setLayout(null);
 
@@ -55,6 +55,12 @@ public class AddEmployee extends JDialog {
         cancel.setBounds(240, 200, 80, 40);
         ok.setFont(kaiFont1);
         cancel.setFont(kaiFont1);
+
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
         cancel.addActionListener(new ActionListener() {
 
@@ -94,7 +100,7 @@ public class AddEmployee extends JDialog {
                     con = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
                     // JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 1)");
+                    statement = con.prepareStatement("insert into users values(null, ?,?, 3)");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     final int result = statement.executeUpdate();

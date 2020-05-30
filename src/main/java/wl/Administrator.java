@@ -170,6 +170,7 @@ public class Administrator extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 new AlterUsers().setVisible(true);
+                Administrator.this.dispose();
             }
 
         });

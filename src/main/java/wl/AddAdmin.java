@@ -26,8 +26,8 @@ public class AddAdmin extends JDialog {
     public AddAdmin() {
         this.setModal(true);
         this.setSize(400,300);
-        this.setLocation(300,300);
-        this.setTitle("添加新用户");
+        this.setLocation(575, 300);
+        this.setTitle("添加新管理员");
         this.setLayout(null);
 
         this.add(l_name);
@@ -57,6 +57,13 @@ public class AddAdmin extends JDialog {
         cancel.setFont(kaiFont1);
 
 
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
+
+
 
         cancel.addActionListener(new ActionListener(){
 
@@ -78,11 +85,11 @@ public class AddAdmin extends JDialog {
                 String upass = new String(t_pass.getPassword());
                 String repass = new String(t_repass.getPassword());
                 if(uname.length() < 2) {
-                    JOptionPane.showMessageDialog(AddAdmin.this, "用户名太短！");
+                    JOptionPane.showMessageDialog(AddAdmin.this, "管理员名称需大于两字符！");
                     return;
                 }
                 if(upass.length() < 2) {
-                    JOptionPane.showMessageDialog(AddAdmin.this, "too short");
+                    JOptionPane.showMessageDialog(AddAdmin.this, "密码长度需大于两字符！");
                     return;
                 }
                 if( !upass.equals(repass) ) {
@@ -95,7 +102,7 @@ public class AddAdmin extends JDialog {
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 1)");
+                    statement = con.prepareStatement("insert into users values(null, ?,?, 2)");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     int result = statement.executeUpdate();
