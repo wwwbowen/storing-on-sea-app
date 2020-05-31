@@ -22,9 +22,8 @@ public class Administrator extends JFrame {
 
     JMenu menu_user = new JMenu("用户管理");
     JMenuItem menu_user_1 = new JMenuItem("添加职员");
-    JMenuItem menu_user_2 = new JMenuItem("删除职员");
     JMenuItem menu_user_3 = new JMenuItem("添加管理员");
-    JMenuItem menu_user_4 = new JMenuItem("删除管理员");
+    JMenuItem menu_user_4 = new JMenuItem("删除用户");
     JMenuItem menu_user_5 = new JMenuItem("查找用户");
     JMenuItem menu_user_6 = new JMenuItem("更改职员信息");
     JMenuItem menu_user_7 = new JMenuItem("更改管理员信息");
@@ -56,7 +55,7 @@ public class Administrator extends JFrame {
 
         menu_file_1.setFont(kaiFont);
         menu_file.add(menu_file_1);
-
+        
         menu_file_2.setFont(kaiFont);
         menu_file.add(menu_file_2);
 
@@ -68,7 +67,6 @@ public class Administrator extends JFrame {
 
         menu_user.setFont(kaiFont);
         menu_user_1.setFont(kaiFont);
-        menu_user_2.setFont(kaiFont);
         menu_user_3.setFont(kaiFont);
         menu_user_4.setFont(kaiFont);
         menu_user_5.setFont(kaiFont);
@@ -79,7 +77,7 @@ public class Administrator extends JFrame {
 
         bar.add(menu_user);
         menu_user.add(menu_user_1);
-        menu_user.add(menu_user_2);
+  
         menu_user.add(menu_user_3);
         menu_user.add(menu_user_4);
         menu_user.add(menu_user_5);
@@ -102,14 +100,6 @@ public class Administrator extends JFrame {
 
         });
 
-        menu_user_2.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                new DeleteEmployee().setVisible(true);
-            }
-
-        });
 
         menu_user_3.addActionListener(new ActionListener() {
 

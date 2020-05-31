@@ -15,13 +15,16 @@ public class AddAnnoucement extends JDialog {
     private final JLabel l_name = new JLabel("已发布公告：");
     private final JLabel l_pass = new JLabel("发布新公告：");
     private final JTextField t_name = new JTextField(20);
+   
     private final JTextField t_pass = new JTextField(20);
 
     private final JButton ok = new JButton("发布");
     private final JButton cancel = new JButton("取消");
 
 
+
     public AddAnnoucement() {
+ 
         this.setModal(true);
         this.setSize(400, 270);
         this.setLocation(575, 300);
@@ -40,6 +43,7 @@ public class AddAnnoucement extends JDialog {
         l_name.setBounds(60, 80, 150, 40);
         l_name.setFont(kaiFont1);
         t_name.setBounds(180, 80, 170, 40);
+        t_name.setEditable(false);
         t_name.setFont(kaiFont1);
         l_pass.setBounds(60, 140, 150, 40);
         l_pass.setFont(kaiFont1);
@@ -69,62 +73,76 @@ public class AddAnnoucement extends JDialog {
         });
 
         ok.addActionListener(new ActionListener() {
-            Connection conn = null;
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             Connection con = null;
             PreparedStatement statement = null;
-            
+
             @Override
             public void actionPerformed(final ActionEvent e) {
                 final String uname = t_pass.getText();
+
+
+
                 // 后面连接数据库
 
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     //JOptionPane.showMessageDialog(AddAnnoucement.this, "驱动加载成功");
-                    con = DriverManager.getConnection(
-                            "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
                      //JOptionPane.showMessageDialog(AddAnnoucement.this, "数据库连接成功");
 
-                     ps = conn.prepareStatement("select count(*) from Ann");
-
+                     ps = con.prepareStatement("select * from Ann");
                      rs = ps.executeQuery();// 执行语句
-                     final String name = new String(rs.getString(2));
- 
-                    // 关闭连接
+                     if(rs.next()){
+                        
+                        rs.getString(1);
+                    
+                         System.out.println( rs.getString(1));
+                         statement = con.prepareStatement("update Ann set ann = ? where ann = ? ");
+                         statement.setString(1, uname);
+                         statement.setString(2,  rs.getString(1));
 
-                    statement = con.prepareStatement("update Ann set ann = ? where ann = ? ");
-                    statement.setString(1, name);
-                    statement.setString(2, uname);
+                         final int result = statement.executeUpdate();
 
-                    final int result = statement.executeUpdate();
-                    if (result > 0) {
-                        JOptionPane.showMessageDialog(AddAnnoucement.this, "发布成功！");
-                        AddAnnoucement.this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(AddAnnoucement.this, "发布失败!");
-                    }
-                    if (statement != null) {
-                        statement.close();
-                    }
-                    if (con != null) {
-                        con.close();
-                    }
-                    rs.close();
-                    conn.close();
-                    ps.close();
-
-                } catch (final ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(AddAnnoucement.this, "驱动加载失败");
-                } catch (final SQLException e1) {
+                         if (result > 0) {
+                             JOptionPane.showMessageDialog(AddAnnoucement.this, "发布成功！");
+                             t_name.setText( rs.getString(1));
+                             t_pass.setText("");
+                         } else {
+                             JOptionPane.showMessageDialog(AddAnnoucement.this, "发布失败!");
+                         }
+                         if (statement != null) {
+                             statement.close();
+                         }
+                         if (con != null) {
+                             con.close();
+                         }
+                         rs.close();
+                         ps.close();
+                     }
+                 } catch (final ClassNotFoundException e1) {
+                     JOptionPane.showMessageDialog(AddAnnoucement.this, "驱动加载失败");
+                 } catch (final SQLException e1) {
                     JOptionPane.showMessageDialog(AddAnnoucement.this, "添加失败");
                     e1.printStackTrace();
                 }
-
-
+            
+                
             }
+                     
+                    
+                            
+                        
+                        
+                       
+                        
+                   
 
+            
+            
+            
         });
 
     }
