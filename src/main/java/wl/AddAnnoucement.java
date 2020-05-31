@@ -19,11 +19,7 @@ public class AddAnnoucement extends JDialog {
 
     private final JButton ok = new JButton("发布");
     private final JButton cancel = new JButton("取消");
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-    Connection con = null;
-    PreparedStatement statement = null;
+
 
     public AddAnnoucement() {
         this.setModal(true);
@@ -44,10 +40,12 @@ public class AddAnnoucement extends JDialog {
         l_name.setBounds(60, 80, 150, 40);
         l_name.setFont(kaiFont1);
         t_name.setBounds(180, 80, 170, 40);
+        t_name.setFont(kaiFont1);
         l_pass.setBounds(60, 140, 150, 40);
         l_pass.setFont(kaiFont1);
         t_pass.setBounds(180, 140, 170, 40);
-        l_pass.setFont(kaiFont1);      
+        l_pass.setFont(kaiFont1);  
+        t_pass.setFont(kaiFont1);     
         Annoucement_title.setFont(kaiFont1);
         ok.setBounds(80, 200, 80, 40);
         cancel.setBounds(240, 200, 80, 40);
@@ -71,7 +69,11 @@ public class AddAnnoucement extends JDialog {
         });
 
         ok.addActionListener(new ActionListener() {
-
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Connection con = null;
+            PreparedStatement statement = null;
             
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -85,9 +87,10 @@ public class AddAnnoucement extends JDialog {
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
                      //JOptionPane.showMessageDialog(AddAnnoucement.this, "数据库连接成功");
 
-                     ps = conn.prepareStatement("select * from Ann");
+                     ps = conn.prepareStatement("select count(*) from Ann");
+
                      rs = ps.executeQuery();// 执行语句
-                     final String name = rs.getString(2);
+                     final String name = new String(rs.getString(2));
  
                     // 关闭连接
 
@@ -100,7 +103,7 @@ public class AddAnnoucement extends JDialog {
                         JOptionPane.showMessageDialog(AddAnnoucement.this, "发布成功！");
                         AddAnnoucement.this.dispose();
                     } else {
-                        JOptionPane.showMessageDialog(AddAnnoucement.this, "发布失败");
+                        JOptionPane.showMessageDialog(AddAnnoucement.this, "发布失败!");
                     }
                     if (statement != null) {
                         statement.close();

@@ -14,20 +14,23 @@ public class Alterpassword extends JDialog {
     private JLabel l_name = new JLabel("用户名:");
     private JTextField t_name = new JTextField(12);
 
-    private JLabel l_pass = new JLabel("密  码:");
+    private JLabel l_pass = new JLabel("新密码:");
     private JPasswordField t_pass = new JPasswordField(12);
 
-    private JLabel l_repass = new JLabel("确认密码");
+    private JLabel l_repass = new JLabel("确认密码:");
     private JPasswordField t_repass = new JPasswordField(12);
 
     private JButton ok = new JButton("确定");
     private JButton cancel = new JButton("取消");
 
+
+
     public Alterpassword() {
+       
         this.setModal(true);
         this.setSize(400,300);
-        this.setLocation(300,300);
-        this.setTitle("添加新用户");
+        this.setLocation(575,300);
+        this.setTitle("更改密码");
         this.setLayout(null);
 
         this.add(l_name);
@@ -47,7 +50,7 @@ public class Alterpassword extends JDialog {
         l_pass.setFont(kaiFont1);
         t_pass.setBounds(150, 80, 160, 40);
 
-        l_repass.setBounds(60, 140, 80, 40);
+        l_repass.setBounds(40, 140,100, 40);
         l_repass.setFont(kaiFont1);
         t_repass.setBounds(150, 140, 160, 40);
 
@@ -56,6 +59,11 @@ public class Alterpassword extends JDialog {
         ok.setFont(kaiFont1);
         cancel.setFont(kaiFont1);
 
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
 
         cancel.addActionListener(new ActionListener(){
@@ -70,56 +78,73 @@ public class Alterpassword extends JDialog {
         ok.addActionListener(new ActionListener(){
 
             Connection con = null;
-            PreparedStatement statement = null;
-
+            PreparedStatement statement1 = null;
+            PreparedStatement statement2 = null;
+            ResultSet rs = null;
             @Override
             public void actionPerformed(ActionEvent e) {
-                String uname = t_name.getText();
-                String upass = new String(t_pass.getPassword());
-                String repass = new String(t_repass.getPassword());
-                if(uname.length() < 2) {
-                    JOptionPane.showMessageDialog(Alterpassword.this, "用户名太短！");
-                    return;
-                }
-                if(upass.length() < 2) {
-                    JOptionPane.showMessageDialog(Alterpassword.this, "too short");
-                    return;
-                }
-                if( !upass.equals(repass) ) {
-                    JOptionPane.showMessageDialog(Alterpassword.this, "password and confirm password should be the same");
-                    return;
-                }
-                //后面连接数据库
+                final String uname = t_name.getText();
+                final String upass = new String(t_pass.getPassword());
+                final String repass = new String(t_repass.getPassword());
+              
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
-                    // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
-                    //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 1)");
-                    statement.setString(1, uname);
-                    statement.setString(2, upass);
-                    int result = statement.executeUpdate();
-                    if(result > 0){
-                        JOptionPane.showMessageDialog(Alterpassword.this, "添加成功！");
-                        Alterpassword.this.dispose();
+                    // JOptionPane.showMessageDialog(Alterpassword.this, "驱动加载成功");
+                    con = DriverManager.getConnection(
+                            "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
+                    // JOptionPane.showMessageDialog(Alterpassword.this, "数据库连接成功");
+                    statement1 = con.prepareStatement("select count(*) from users where user_name= ? ");
+                    statement1.setString(1, uname);
+
+                   rs = statement1.executeQuery();
+                   if (rs.next()) {
+                    final int result = rs.getInt(1);
+                    if (result == 1) {
+                        
+                            if(!upass.equals(repass)){JOptionPane.showMessageDialog(Alterpassword.this, "请保证两次输入的密码相同！");}
+                            else {
+                            statement2 = con.prepareStatement("update users set user_pass = ? where user_name = ?  ");
+                            statement2.setString(1, upass);
+                            statement2.setString(2, uname);
+                            int rss =statement2.executeUpdate();
+                            if(rss >0){JOptionPane.showMessageDialog(Alterpassword.this, "修改成功！");
+                            t_name.setText("");
+                            t_pass.setText("");
+                            t_repass.setText("");
+                            }
+                            
+                        }
+
+                            
                     } else {
-                            JOptionPane.showMessageDialog(Alterpassword.this, "添加失败");
+                        JOptionPane.showMessageDialog(Alterpassword.this, "没有此用户！");
+                        t_name.setText("");
+                        t_pass.setText("");
                     }
-                    if(statement != null) {
-                        statement.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+
+                    if (statement1 != null) {
+                        statement1.close();
                     }
-                    if(con != null) {
+                    if (con != null) {
                         con.close();
                     }
+                    statement2.close();
+
+
                 } catch (ClassNotFoundException e1) {
                     JOptionPane.showMessageDialog(Alterpassword.this, "驱动加载失败");
                 } catch (SQLException e1) {
                     JOptionPane.showMessageDialog(Alterpassword.this, "添加失败");
                     e1.printStackTrace();
                 }
-
+            
             }
 
+               
         });
 
     }
