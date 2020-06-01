@@ -6,8 +6,12 @@ import java.awt.event.*;
 import java.sql.*;
 
 
+
+
 public class AddAnnoucement extends JDialog {
 
+    
+    public String annn ;
     private static final long serialVersionUID = -5116968700267175491L;
 
     private final Font kaiFont1 = new Font("AR PL UKai CN", Font.PLAIN, 20);
@@ -21,10 +25,15 @@ public class AddAnnoucement extends JDialog {
     private final JButton ok = new JButton("发布");
     private final JButton cancel = new JButton("取消");
 
-
-
+    
     public AddAnnoucement() {
  
+            t_name.setText( Administrator.a);
+            System.out.println( Administrator.a);
+    
+           
+    
+    
         this.setModal(true);
         this.setSize(400, 270);
         this.setLocation(575, 300);
@@ -61,6 +70,7 @@ public class AddAnnoucement extends JDialog {
         final JLabel background = new JLabel(img);// 将图片放进标签里
         getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
         background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
+      
 
     
         cancel.addActionListener(new ActionListener() {
@@ -97,8 +107,7 @@ public class AddAnnoucement extends JDialog {
                      rs = ps.executeQuery();// 执行语句
                      if(rs.next()){
                         
-                        rs.getString(1);
-                    
+                        rs.getString(1);                    
                          System.out.println( rs.getString(1));
                          statement = con.prepareStatement("update Ann set ann = ? where ann = ? ");
                          statement.setString(1, uname);
@@ -108,7 +117,7 @@ public class AddAnnoucement extends JDialog {
 
                          if (result > 0) {
                              JOptionPane.showMessageDialog(AddAnnoucement.this, "发布成功！");
-                             t_name.setText( rs.getString(1));
+                             t_name.setText(uname);
                              t_pass.setText("");
                          } else {
                              JOptionPane.showMessageDialog(AddAnnoucement.this, "发布失败!");

@@ -3,10 +3,17 @@ package wl;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
+
 /**
  * MainFrame
  */
 public class Administrator extends JFrame {
+   
+        public String ann;
+        public String getAdministrator(){return ann;}
+        
+  
     /**
      *
      */
@@ -34,6 +41,8 @@ public class Administrator extends JFrame {
     JMenuItem menu_Announcement_1  = new JMenuItem("更改公告栏信息");
 
     private final Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
+
+    public static String a;
 
     public Administrator() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,6 +99,8 @@ public class Administrator extends JFrame {
         bar.add(menu_Announcement);
         menu_Announcement_1.setFont(kaiFont);
         menu_Announcement.add(menu_Announcement_1);
+
+    
 
         menu_user_1.addActionListener(new ActionListener() {
 
@@ -202,9 +213,40 @@ public class Administrator extends JFrame {
         });
 
         menu_Announcement_1.addActionListener(new ActionListener() {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Connection con = null;
 
+              
             @Override
             public void actionPerformed(final ActionEvent e) {
+
+                // 后面连接数据库
+
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    //JOptionPane.showMessageDialog(AddAnnoucement.this, "驱动加载成功");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
+                     //JOptionPane.showMessageDialog(AddAnnoucement.this, "数据库连接成功");
+
+                     ps = con.prepareStatement("select * from Ann");
+                     rs = ps.executeQuery();// 执行语句
+                     if(rs.next()){
+                        
+                        ann=rs.getString(1);
+                        System.out.println(ann);
+                        a = rs.getString(1);
+                    
+                         
+                         rs.close();
+                         ps.close();
+                     }
+                 } catch (final ClassNotFoundException e1) {
+                     JOptionPane.showMessageDialog(Administrator.this, "驱动加载失败");
+                 } catch (final SQLException e1) {
+                    JOptionPane.showMessageDialog(Administrator.this, "添加失败");
+                    e1.printStackTrace();
+                }
                 new AddAnnoucement().setVisible(true);
             }
 

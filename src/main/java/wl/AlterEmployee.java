@@ -25,8 +25,8 @@ public class AlterEmployee extends JDialog {
 
     public AlterEmployee() {
         this.setModal(true);
-        this.setSize(400,300);
-        this.setLocation(300,300);
+        this.setSize(400,400);
+        this.setLocation(575,300);
         this.setTitle("添加新用户");
         this.setLayout(null);
 
