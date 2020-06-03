@@ -11,7 +11,7 @@ import java.sql.*;
 public class Administrator extends JFrame {
    
         public String ann;
-        public String getAdministrator(){return ann;}
+       
         
   
     /**

@@ -54,9 +54,9 @@ public class AlterAdmin extends JDialog {
         this.add(ok);
         this.add(cancel);
 
-        l_name.setBounds(60, 20, 80, 30);
+        l_name.setBounds(60, 30, 80, 30);
         l_name.setFont(kaiFont1);
-        t_name.setBounds(150, 20, 160, 30);
+        t_name.setBounds(150, 30, 160, 30);
 
         l_pass.setBounds(60, 80, 80, 30);
         l_pass.setFont(kaiFont1);
