@@ -135,6 +135,7 @@ public class Administrator extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 new SelectUsers().setVisible(true);
+                
             }
 
         });

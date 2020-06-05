@@ -26,7 +26,7 @@ public class AlterAdmin extends JDialog {
     private JLabel l_telephone = new JLabel("电 话:");
     private JPasswordField t_telephone = new JPasswordField(12);
 
-    private JLabel l_address = new JLabel("电 话:");
+    private JLabel l_address = new JLabel("地 址:");
     private JPasswordField t_address = new JPasswordField(12);
 
     private JButton ok = new JButton("确定");
@@ -36,7 +36,7 @@ public class AlterAdmin extends JDialog {
         this.setModal(true);
         this.setSize(400,400);
         this.setLocation(575,300);
-        this.setTitle("添加新用户");
+        this.setTitle("更改管理员信息");
         this.setLayout(null);
 
         this.add(l_name);
@@ -54,17 +54,17 @@ public class AlterAdmin extends JDialog {
         this.add(ok);
         this.add(cancel);
 
-        l_name.setBounds(60, 30, 80, 30);
+        l_name.setBounds(60, 20, 80, 30);
         l_name.setFont(kaiFont1);
-        t_name.setBounds(150, 30, 160, 30);
+        t_name.setBounds(150, 20, 160, 30);
 
         l_pass.setBounds(60, 80, 80, 30);
         l_pass.setFont(kaiFont1);
         t_pass.setBounds(150, 80, 160, 30);
 
-        l_sex.setBounds(60, 130, 80, 30);
+        l_sex.setBounds(0, 50, 5, 30);
         l_sex.setFont(kaiFont1);
-        t_sex.setBounds(150, 130, 160, 30);
+        t_sex.setBounds(150, 50, 160, 30);
 
         l_sex.setBounds(60, 180, 80, 30);
         l_sex.setFont(kaiFont1);
@@ -87,6 +87,12 @@ public class AlterAdmin extends JDialog {
         cancel.setBounds(240, 380, 80, 40);
         ok.setFont(kaiFont1);
         cancel.setFont(kaiFont1);
+
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
 
 

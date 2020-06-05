@@ -26,7 +26,7 @@ public class AlterEmployee extends JDialog {
     private JLabel l_telephone = new JLabel("电 话:");
     private JPasswordField t_telephone = new JPasswordField(12);
 
-    private JLabel l_address = new JLabel("电 话:");
+    private JLabel l_address = new JLabel("地 址:");
     private JPasswordField t_address = new JPasswordField(12);
 
     private JButton ok = new JButton("确定");
@@ -36,7 +36,7 @@ public class AlterEmployee extends JDialog {
         this.setModal(true);
         this.setSize(400,400);
         this.setLocation(575,300);
-        this.setTitle("添加新用户");
+        this.setTitle("更改职员信息");
         this.setLayout(null);
 
         this.add(l_name);
@@ -89,8 +89,11 @@ public class AlterEmployee extends JDialog {
         cancel.setFont(kaiFont1);
 
 
-
-
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
         cancel.addActionListener(new ActionListener(){
 
@@ -110,7 +113,6 @@ public class AlterEmployee extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String uname = t_name.getText();
                 String upass = new String(t_pass.getPassword());
-                String repass = new String(t_sex.getPassword());
                 if(uname.length() < 2) {
                     JOptionPane.showMessageDialog(AlterEmployee.this, "用户名太短！");
                     return;
@@ -119,10 +121,7 @@ public class AlterEmployee extends JDialog {
                     JOptionPane.showMessageDialog(AlterEmployee.this, "too short");
                     return;
                 }
-                if( !upass.equals(repass) ) {
-                    JOptionPane.showMessageDialog(AlterEmployee.this, "password and confirm password should be the same");
-                    return;
-                }
+
                 //后面连接数据库
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
