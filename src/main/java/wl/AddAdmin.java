@@ -102,7 +102,7 @@ public class AddAdmin extends JDialog {
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 2)");
+                    statement = con.prepareStatement("insert into users values(null, ?, ?, 2, 11111, 11111 ,11111 ,11111)");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     int result = statement.executeUpdate();
@@ -121,7 +121,7 @@ public class AddAdmin extends JDialog {
                 } catch (ClassNotFoundException e1) {
                     JOptionPane.showMessageDialog(AddAdmin.this, "驱动加载失败");
                 } catch (SQLException e1) {
-                    JOptionPane.showMessageDialog(AddAdmin.this, "添加失败");
+                    JOptionPane.showMessageDialog(AddAdmin.this, "添加失败!");
                     e1.printStackTrace();
                 }
 

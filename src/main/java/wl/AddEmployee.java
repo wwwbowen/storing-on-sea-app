@@ -27,7 +27,7 @@ public class AddEmployee extends JDialog {
         this.setModal(true);
         this.setSize(400, 300);
         this.setLocation(575, 300);
-        this.setTitle("添加新用户");
+        this.setTitle("添加新职员");
         this.setLayout(null);
 
         this.add(l_name);
@@ -82,11 +82,11 @@ public class AddEmployee extends JDialog {
                 final String upass = new String(t_pass.getPassword());
                 final String repass = new String(t_repass.getPassword());
                 if (uname.length() < 2) {
-                    JOptionPane.showMessageDialog(AddEmployee.this, "用户名太短！");
+                    JOptionPane.showMessageDialog(AddEmployee.this, "用户名长度必须大于等于两字符！");
                     return;
                 }
                 if (upass.length() < 2) {
-                    JOptionPane.showMessageDialog(AddEmployee.this, "too short");
+                    JOptionPane.showMessageDialog(AddEmployee.this, "密码必须大于等于两字符！");
                     return;
                 }
                 if (!upass.equals(repass)) {
@@ -100,7 +100,7 @@ public class AddEmployee extends JDialog {
                     con = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
                     // JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 3)");
+                    statement = con.prepareStatement("insert into users values(null, ?,?, 3 , 111111, 11111 ,11111111111 ,1111111)");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     final int result = statement.executeUpdate();
@@ -119,7 +119,7 @@ public class AddEmployee extends JDialog {
                 } catch (final ClassNotFoundException e1) {
                     JOptionPane.showMessageDialog(AddEmployee.this, "驱动加载失败");
                 } catch (final SQLException e1) {
-                    JOptionPane.showMessageDialog(AddEmployee.this, "添加失败");
+                    JOptionPane.showMessageDialog(AddEmployee.this, "添加失败！");
                     e1.printStackTrace();
                 }
 

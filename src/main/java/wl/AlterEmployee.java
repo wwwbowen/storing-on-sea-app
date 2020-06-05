@@ -18,16 +18,16 @@ public class AlterEmployee extends JDialog {
     private JPasswordField t_pass = new JPasswordField(12);
 
     private JLabel l_sex = new JLabel("性 别:");
-    private JPasswordField t_sex = new JPasswordField(12);
+    private JTextField t_sex = new JTextField(12);
 
     private JLabel l_age = new JLabel("年 龄:");
-    private JPasswordField t_age = new JPasswordField(12);
+    private JTextField t_age = new JTextField(12);
 
     private JLabel l_telephone = new JLabel("电 话:");
-    private JPasswordField t_telephone = new JPasswordField(12);
+    private JTextField t_telephone = new JTextField(12);
 
     private JLabel l_address = new JLabel("地 址:");
-    private JPasswordField t_address = new JPasswordField(12);
+    private JTextField t_address = new JTextField(12);
 
     private JButton ok = new JButton("确定");
     private JButton cancel = new JButton("取消");
@@ -35,7 +35,7 @@ public class AlterEmployee extends JDialog {
     public AlterEmployee() {
         this.setModal(true);
         this.setSize(400,400);
-        this.setLocation(575,300);
+        this.setLocation(575,280);
         this.setTitle("更改职员信息");
         this.setLayout(null);
 
@@ -54,7 +54,7 @@ public class AlterEmployee extends JDialog {
         this.add(ok);
         this.add(cancel);
         
-        l_name.setBounds(60, 30, 80, 30);
+        l_name.setBounds(60,30, 80, 30);
         l_name.setFont(kaiFont1);
         t_name.setBounds(150, 30, 160, 30);
 
@@ -66,28 +66,23 @@ public class AlterEmployee extends JDialog {
         l_sex.setFont(kaiFont1);
         t_sex.setBounds(150, 130, 160, 30);
 
-        l_sex.setBounds(60, 180, 80, 30);
-        l_sex.setFont(kaiFont1);
-        t_sex.setBounds(150, 180, 160, 30);
-
-        l_age.setBounds(60, 230, 80, 30);
+        l_age.setBounds(60, 180, 80, 30);
         l_age.setFont(kaiFont1);
-        t_age.setBounds(150, 230, 160, 30);
+        t_age.setBounds(150, 180, 160, 30);
 
-        l_telephone.setBounds(60, 280, 80, 30);
+        l_telephone.setBounds(60, 230, 80, 30);
         l_telephone.setFont(kaiFont1);
-        t_telephone.setBounds(150, 280, 160, 30);
+        t_telephone.setBounds(150, 230, 160, 30);
 
-        l_address.setBounds(60, 330, 80, 30);
+        l_address.setBounds(60, 280, 80, 30);
         l_address.setFont(kaiFont1);
-        t_address.setBounds(150, 330, 160, 30);
+        t_address.setBounds(150, 280, 160, 30);
 
 
-        ok.setBounds(100, 380, 80, 40);
-        cancel.setBounds(240, 380, 80, 40);
+        ok.setBounds(100, 330, 80, 40);
+        cancel.setBounds(240, 330, 80, 40);
         ok.setFont(kaiFont1);
         cancel.setFont(kaiFont1);
-
 
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
         final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
@@ -112,31 +107,54 @@ public class AlterEmployee extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String uname = t_name.getText();
+                String usex = t_sex.getText();
+                String uage = t_age.getText();
+                String utelephone = t_telephone.getText();
+                String uaddress = t_address.getText();
                 String upass = new String(t_pass.getPassword());
                 if(uname.length() < 2) {
-                    JOptionPane.showMessageDialog(AlterEmployee.this, "用户名太短！");
+                    JOptionPane.showMessageDialog(AlterEmployee.this, "用户名必须大于两字符！");
                     return;
                 }
                 if(upass.length() < 2) {
-                    JOptionPane.showMessageDialog(AlterEmployee.this, "too short");
+                    JOptionPane.showMessageDialog(AlterEmployee.this, "密码长度必须大于两字符！");
                     return;
                 }
-
+                if(!usex.equals("female")&&!usex.equals("male")) {
+                    JOptionPane.showMessageDialog(AlterEmployee.this, "请输入正确的性别格式（female或male）！");
+                    return;
+                }
+                if(uage.length() < 1) {
+                    JOptionPane.showMessageDialog(AlterEmployee.this, "年龄不能为空！");
+                    return;
+                }
+                if(utelephone.length() < 1) {
+                    JOptionPane.showMessageDialog(AlterEmployee.this, "电话栏不能为空！");
+                    return;
+                }
+                if(uaddress.length() < 1 ) {
+                    JOptionPane.showMessageDialog(AlterEmployee.this, "地址栏不能为空！");
+                    return;
+                }
                 //后面连接数据库
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 1)");
-                    statement.setString(1, uname);
-                    statement.setString(2, upass);
+                    statement = con.prepareStatement("update users set user_pass = ? , sex = ? , age = ? , telephone =? , address = ? where user_pass = ? and rid = 3");
+                    statement.setString(6, uname);
+                    statement.setString(1, upass);
+                    statement.setString(2, usex);
+                    statement.setString(3, uage);
+                    statement.setString(4, utelephone);
+                    statement.setString(5, uaddress);
                     int result = statement.executeUpdate();
                     if(result > 0){
-                        JOptionPane.showMessageDialog(AlterEmployee.this, "添加成功！");
+                        JOptionPane.showMessageDialog(AlterEmployee.this, "修改成功！");
                         AlterEmployee.this.dispose();
                     } else {
-                            JOptionPane.showMessageDialog(AlterEmployee.this, "添加失败");
+                            JOptionPane.showMessageDialog(AlterEmployee.this, "修改失败");
                     }
                     if(statement != null) {
                         statement.close();
