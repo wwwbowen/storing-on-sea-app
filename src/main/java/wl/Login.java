@@ -134,7 +134,8 @@ public class Login extends JFrame {
                 }              
         
                 try {
-                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Class.forName("com.mysql.cj.jdbc.Driver");
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
@@ -147,10 +148,25 @@ public class Login extends JFrame {
                     if (rs.next()) {
                         final int result = rs.getInt(1);
                         if (result == 1) {
-                            JOptionPane.showMessageDialog(Login.this, "登录成功！");
+                            if(state == "2"){
+                                JOptionPane.showMessageDialog(Login.this, "登录成功！");
                             final Administrator mainFrame = new Administrator();
                             mainFrame.setVisible(true);
                             Login.this.dispose();
+                            }
+                            if(state == "1"){
+                                JOptionPane.showMessageDialog(Login.this, "登录成功！");
+                                final Costomer mainFrame1 = new Costomer();
+                                mainFrame1.setVisible(true);
+                                Login.this.dispose();
+                            }
+                            if(state == "3"){
+                                JOptionPane.showMessageDialog(Login.this, "登录成功！");
+                                final Employee mainFrame2 = new Employee();
+                                mainFrame2.setVisible(true);
+                                Login.this.dispose();
+                            }
+
                         } else {
                             JOptionPane.showMessageDialog(Login.this, "用户名密码错误");
                             t_name.setText("");

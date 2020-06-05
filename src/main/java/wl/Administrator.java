@@ -5,13 +5,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
+ 
+import javax.swing.JOptionPane;
+
 /**
  * MainFrame
  */
 public class Administrator extends JFrame {
    
         public String ann;
-       
+
+
+
         
   
     /**
@@ -31,7 +36,7 @@ public class Administrator extends JFrame {
     JMenuItem menu_user_1 = new JMenuItem("添加职员");
     JMenuItem menu_user_3 = new JMenuItem("添加管理员");
     JMenuItem menu_user_4 = new JMenuItem("删除用户");
-    JMenuItem menu_user_5 = new JMenuItem("查找用户");
+    JMenuItem menu_user_5 = new JMenuItem("查看用户信息");
     JMenuItem menu_user_6 = new JMenuItem("更改职员信息");
     JMenuItem menu_user_7 = new JMenuItem("更改管理员信息");
     JMenuItem menu_user_8 = new JMenuItem("密码修改");
@@ -44,7 +49,13 @@ public class Administrator extends JFrame {
 
     public static String a;
 
+
+ 
+
     public Administrator() {
+
+
+        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("综合管理");
         this.setSize(800, 600);
@@ -123,6 +134,8 @@ public class Administrator extends JFrame {
 
         menu_user_4.addActionListener(new ActionListener() {
 
+            
+
             @Override
             public void actionPerformed(final ActionEvent e) {
                 new DeleteAdmin().setVisible(true);
@@ -134,6 +147,7 @@ public class Administrator extends JFrame {
 
             @Override
             public void actionPerformed(final ActionEvent e) {
+
                 new SelectUsers().setVisible(true);
                 
             }
