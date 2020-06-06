@@ -46,10 +46,14 @@ public class Login extends JFrame {
     private final String[] boxOptions = {"客 户","管理员","职 员"};
     private final JComboBox<String> box = new JComboBox<>(boxOptions);
 
+   
+
 
 
     
     public Login() {
+
+        
        
         super();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -97,6 +101,8 @@ public class Login extends JFrame {
         logButton.setBounds(160, 200, 80, 30);
         cancel.setBounds(280, 200, 80, 30);
 
+
+
         setVisible(true);
         ((JComponent) getContentPane()).setOpaque(false); //将框架强转为容器          
         final ImageIcon img = new ImageIcon("src/main/images/登录背景_1.jpg"); // 传入背景图片路径
@@ -124,14 +130,18 @@ public class Login extends JFrame {
                 final String uname = t_name.getText();
                 final String upass = new String(t_pass.getPassword());
                 final String state;
-                if(box.getSelectedItem().equals("管理员")){
-                    //设置标志量的值
+                if (box.getSelectedItem().equals("管理员")) {
+                    // 设置标志量的值
                        state = "2";
-                }else if (box.getSelectedItem().equals("职 员")) {
-                       state = "3";
-                } else {
+                }
+                else if (box.getSelectedItem().equals("职 员")) {
+                      state = "3";
+                }  
+                else{
                        state = "1";
-                }              
+
+                }
+                         
         
                 try {
 
@@ -148,7 +158,7 @@ public class Login extends JFrame {
                     if (rs.next()) {
                         final int result = rs.getInt(1);
                         if (result == 1) {
-                            if(state == "2"){
+                            if(state == "2") {
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
                             final Administrator mainFrame = new Administrator();
                             mainFrame.setVisible(true);
@@ -156,9 +166,9 @@ public class Login extends JFrame {
                             }
                             if(state == "1"){
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
-                                final CostomerFrame mainFrame1 = new CostomerFrame();
-                                mainFrame1.setVisible(true);
-                                Login.this.dispose();
+                                final CustomerFrame mainFrame3 = new CustomerFrame();
+                                mainFrame3.setVisible(true);
+
                             }
                             if(state == "3"){
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
