@@ -156,13 +156,13 @@ public class Login extends JFrame {
                             }
                             if(state == "1"){
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
-                                final Costomer mainFrame1 = new Costomer();
+                                final CostomerFrame mainFrame1 = new CostomerFrame();
                                 mainFrame1.setVisible(true);
                                 Login.this.dispose();
                             }
                             if(state == "3"){
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
-                                final Employee mainFrame2 = new Employee();
+                                final StaffFrame mainFrame2 = new StaffFrame();
                                 mainFrame2.setVisible(true);
                                 Login.this.dispose();
                             }
