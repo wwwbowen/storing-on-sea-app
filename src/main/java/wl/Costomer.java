@@ -148,7 +148,7 @@ public class Costomer extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
 
-                new SelectUsers().setVisible(true);
+                new CheckUsers().setVisible(true);
                 
             }
 
