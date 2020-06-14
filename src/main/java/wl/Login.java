@@ -202,65 +202,18 @@ public class Login extends JFrame {
             }
             
         });
-
-
-        
+       
         logButton.addActionListener(new ActionListener() {
-
-            Connection con = null;
-            PreparedStatement statement = null;
-            ResultSet rs = null;
 
             @Override
             public void actionPerformed(final ActionEvent e) {
-                final String uname = t_name.getText();
-                final String upass = new String(t_pass.getPassword());
-
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
-                    con = DriverManager.getConnection(
-                            "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
-                    // JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("select count(*) from users where user_name= ? and user_pass= ?");
-                    statement.setString(1, uname);
-                    statement.setString(2, upass);
-                    rs = statement.executeQuery();
-                    if (rs.next()) {
-                        final int result = rs.getInt(1);
-                        if (result == 1) {
-                            JOptionPane.showMessageDialog(Login.this, "登录成功！");
-                            final Administrator mainFrame = new Administrator();
-                            mainFrame.setVisible(true);
-                            Login.this.dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(Login.this, "用户名密码错误");
-                        }
-                    }
-                    if (rs != null) {
-                        rs.close();
-                    }
-                    if (statement != null) {
-                        statement.close();
-                    }
-                    if (con != null) {
-                        con.close();
-                    }
-                } catch (final ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(Login.this, "驱动加载失败");
-                } catch (final SQLException e1) {
-                    JOptionPane.showMessageDialog(Login.this, "数据库连接失败");
-                    e1.printStackTrace();
-                }
-
-
-                // if(uname.equals("aa") && upass.equals("123")) {
-                //     JOptionPane.showMessageDialog(Login.this, "登录成功");
-                // } else {
-                //     JOptionPane.showMessageDialog(Login.this, "用户名密码错误！");
-                // }
-
+                final Signin mainFrame = new Signin();
+                mainFrame.setVisible(true);
+                Login.this.dispose();
             }
+
+
+            
             
         });
     }

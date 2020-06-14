@@ -44,6 +44,8 @@ public class CheckUsers extends JDialog {
     int Location_x = (int) (toolkit.getScreenSize().getWidth() - DEFAULE_WIDTH) / 2;
     int Location_y = (int) (toolkit.getScreenSize().getHeight() - DEFAULE_HEIGH) / 2;
 
+
+
     public CheckUsers() {
         this.setModal(true);
         this.setSize(400, 300);
@@ -68,6 +70,14 @@ public class CheckUsers extends JDialog {
         cancel.setBounds(240, 200, 30, 20);
         ok.setFont(kaiFont2);
         cancel.setFont(kaiFont2);
+
+
+        
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
         cancel.addActionListener(new ActionListener() {
 

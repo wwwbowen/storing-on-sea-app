@@ -23,7 +23,7 @@ public class Administrator extends JFrame {
     JMenuBar bar = new JMenuBar();
 
     JMenu menu_file = new JMenu("仓储管理");
-    JMenuItem menu_file_1 = new JMenuItem("查看仓库信息");
+    JMenuItem menu_file_1 = new JMenuItem("查询仓库信息");
     JMenuItem menu_file_2 = new JMenuItem("更改仓库信息");
     JMenuItem menu_file_3 = new JMenuItem("添加仓库信息");
     JMenuItem menu_file_4 = new JMenuItem("删除仓库信息");
@@ -33,7 +33,7 @@ public class Administrator extends JFrame {
     JMenuItem menu_user_2 = new JMenuItem("搜索用户信息");
     JMenuItem menu_user_3 = new JMenuItem("添加管理员");
     JMenuItem menu_user_4 = new JMenuItem("删除用户");
-    JMenuItem menu_user_5 = new JMenuItem("查看用户信息");
+    JMenuItem menu_user_5 = new JMenuItem("查询用户信息");
     JMenuItem menu_user_6 = new JMenuItem("更改职员信息");
     JMenuItem menu_user_7 = new JMenuItem("更改管理员信息");
     JMenuItem menu_user_8 = new JMenuItem("密码修改");

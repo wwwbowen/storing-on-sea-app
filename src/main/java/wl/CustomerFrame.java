@@ -31,7 +31,7 @@ public class CustomerFrame extends JFrame {
     public CustomerFrame() {
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocation(50, 50);
+        this.setLocation(375, 100);
         this.setJMenuBar(bar);
         this.setTitle("欢迎光临");
 
@@ -54,11 +54,12 @@ public class CustomerFrame extends JFrame {
         menu_goods.add(menu_goods_search);
 
         
-        ((JComponent) getContentPane()).setOpaque(false);
-        final ImageIcon img = new ImageIcon("src/pic/back/2.jpg");
-        final JLabel background = new JLabel(img);
-        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
-        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
+
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/海洋动图.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
         menu_user_exit.addActionListener(new ActionListener() {
 

@@ -42,12 +42,12 @@ public class Delete extends JDialog {
         ok.setBounds(60, 110, 100, 40);
         cancel.setBounds(360, 110, 100, 40);
 
-        
-        ((JComponent) getContentPane()).setOpaque(false);
-        final ImageIcon img = new ImageIcon("src/pic/back/2.jpg");
-        final JLabel background = new JLabel(img);
-        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
-        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
+
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
+        final JLabel background = new JLabel(img);// 将图片放进标签里
+        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
+        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
         cancel.addActionListener(new ActionListener() {
 

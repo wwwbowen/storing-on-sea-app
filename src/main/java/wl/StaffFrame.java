@@ -48,7 +48,7 @@ public class StaffFrame extends JFrame {
     public StaffFrame() {
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocation(50, 50);
+        this.setLocation(375, 100);
         this.setJMenuBar(bar);
         this.setTitle("职员系统");
 

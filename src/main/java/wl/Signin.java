@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class DeleteWarehouse extends JDialog {
+public class Signin extends JDialog {
 
     private static final long serialVersionUID = -5116968700267175491L;
 
@@ -23,11 +23,11 @@ public class DeleteWarehouse extends JDialog {
     private JButton ok = new JButton("确定");
     private JButton cancel = new JButton("取消");
 
-    public DeleteWarehouse() {
+    public Signin() {
         this.setModal(true);
         this.setSize(400,300);
-        this.setLocation(300,300);
-        this.setTitle("添加新用户");
+        this.setLocation(575, 300);
+        this.setTitle("尊敬的客户，欢迎您使用海淘微客APP");
         this.setLayout(null);
 
         this.add(l_name);
@@ -56,7 +56,7 @@ public class DeleteWarehouse extends JDialog {
         ok.setFont(kaiFont1);
         cancel.setFont(kaiFont1);
 
-        
+
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
         final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
         final JLabel background = new JLabel(img);// 将图片放进标签里
@@ -69,7 +69,7 @@ public class DeleteWarehouse extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                DeleteWarehouse.this.dispose();
+                Signin.this.dispose();
             }
 
         });
@@ -85,15 +85,15 @@ public class DeleteWarehouse extends JDialog {
                 String upass = new String(t_pass.getPassword());
                 String repass = new String(t_repass.getPassword());
                 if(uname.length() < 2) {
-                    JOptionPane.showMessageDialog(DeleteWarehouse.this, "用户名太短！");
+                    JOptionPane.showMessageDialog(Signin.this, "用户名名称需大于两字符！");
                     return;
                 }
                 if(upass.length() < 2) {
-                    JOptionPane.showMessageDialog(DeleteWarehouse.this, "too short");
+                    JOptionPane.showMessageDialog(Signin.this, "密码长度需大于两字符！");
                     return;
                 }
                 if( !upass.equals(repass) ) {
-                    JOptionPane.showMessageDialog(DeleteWarehouse.this, "password and confirm password should be the same");
+                    JOptionPane.showMessageDialog(Signin.this, "password and confirm password should be the same");
                     return;
                 }
                 //后面连接数据库
@@ -102,15 +102,15 @@ public class DeleteWarehouse extends JDialog {
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(null, ?,?, 1)");
+                    statement = con.prepareStatement("insert into users values(null, ?, ?, 1, 11111, 11111 ,11111 ,11111)");
                     statement.setString(1, uname);
                     statement.setString(2, upass);
                     int result = statement.executeUpdate();
                     if(result > 0){
-                        JOptionPane.showMessageDialog(DeleteWarehouse.this, "添加成功！");
-                        DeleteWarehouse.this.dispose();
+                        JOptionPane.showMessageDialog(Signin.this, "注册成功！");
+                        Signin.this.dispose();
                     } else {
-                            JOptionPane.showMessageDialog(DeleteWarehouse.this, "添加失败");
+                            JOptionPane.showMessageDialog(Signin.this, "注册失败");
                     }
                     if(statement != null) {
                         statement.close();
@@ -119,9 +119,9 @@ public class DeleteWarehouse extends JDialog {
                         con.close();
                     }
                 } catch (ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(DeleteWarehouse.this, "驱动加载失败");
+                    JOptionPane.showMessageDialog(Signin.this, "驱动加载失败");
                 } catch (SQLException e1) {
-                    JOptionPane.showMessageDialog(DeleteWarehouse.this, "添加失败");
+                    JOptionPane.showMessageDialog(Signin.this, "添加失败!");
                     e1.printStackTrace();
                 }
 
