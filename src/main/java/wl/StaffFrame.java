@@ -174,7 +174,7 @@ public class StaffFrame extends JFrame {
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
                     
-                    ps = con.prepareStatement("select * from ann");
+                    ps = con.prepareStatement("select * from Ann");
                     rs = ps.executeQuery();// 执行语句
                     if(rs.next()){
                        

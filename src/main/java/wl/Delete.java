@@ -102,4 +102,4 @@ public class Delete extends JDialog {
 
     }
     
-};
+}

@@ -114,4 +114,4 @@ public class Insert extends JDialog {
 
     }
     
-};
+}

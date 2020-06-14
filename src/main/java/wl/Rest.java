@@ -78,4 +78,4 @@ public class Rest extends JDialog {
         
     }
     
-};
+}

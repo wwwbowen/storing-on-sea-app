@@ -14,7 +14,7 @@ public class AlterWarehouse extends JDialog {
     private JLabel ID = new JLabel("仓库ID:");
     private JTextField t_name = new JTextField(12);
 
-    private JLabel l_pass = new JLabel("仓库存储类型:");
+    private JLabel l_pass = new JLabel("存储类型:");
     private JTextField t_pass = new JTextField(12);
 
     private JLabel l_sex = new JLabel("数 量:");
@@ -54,7 +54,7 @@ public class AlterWarehouse extends JDialog {
         ID.setFont(kaiFont1);
         t_name.setBounds(150, 30, 160, 30);
 
-        l_pass.setBounds(60, 80, 80, 30);
+        l_pass.setBounds(60, 80, 90, 30);
         l_pass.setFont(kaiFont1);
         t_pass.setBounds(150, 80, 160, 30);
 
