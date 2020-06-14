@@ -2,7 +2,6 @@ package wl;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.sql.*;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,8 +13,7 @@ import javax.swing.JTable;
 public class CheckUsers extends JDialog {
 
     private static final long serialVersionUID = -5116968700267175491L;
-    final String[] title = { "ID", "姓名", "密码", "职位", "性别", "年龄", "电话", "地址" };
-
+    JTextArea textArea = new JTextArea();
     //定义组件
     JTable jTable = null;
     JScrollPane jScrollPane = null;
@@ -24,52 +22,20 @@ public class CheckUsers extends JDialog {
 
     // 创建JTable
 
-    private JScrollPane scpDemo;
-    private JTable tabDemo;
-
-
-    private final Font kaiFont1 = new Font("AR PL UKai CN", Font.PLAIN, 20);
-    private final Font kaiFont2 = new Font("AR PL UKai CN", Font.PLAIN, 15);
-
-    private final JLabel l_name = new JLabel("用户名:");
-    private final JTextField t_name = new JTextField(12);
-
-    private final JButton ok = new JButton("确定");
-    private final JButton cancel = new JButton("取消");
-
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private final int DEFAULE_WIDTH = 1000;
-    private final int DEFAULE_HEIGH = 600;
-
-    int Location_x = (int) (toolkit.getScreenSize().getWidth() - DEFAULE_WIDTH) / 2;
-    int Location_y = (int) (toolkit.getScreenSize().getHeight() - DEFAULE_HEIGH) / 2;
-
-
+    private final Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
     public CheckUsers() {
         this.setModal(true);
-        this.setSize(400, 300);
-        this.setLocation(300, 300);
-        this.setTitle("查看用户信息");
+        this.setSize(500,400);
+        this.setLocation(200, 200);
+        this.setTitle("查看全部人员信息");
         this.setLayout(null);
+        this.setFont(kaiFont);
 
-        this.add(scpDemo);
-        this.add(l_name);
-        this.add(t_name);
-        this.add(ok);
-        this.add(cancel);
-       
+        this.add(textArea);
+        textArea.setFont(kaiFont);
 
-        this.scpDemo.getViewport().add(tabDemo);
-
-        l_name.setBounds(60, 20, 80, 40);
-        l_name.setFont(kaiFont1);
-        t_name.setBounds(150, 20, 160, 40);
-
-        ok.setBounds(100, 200, 30, 20);
-        cancel.setBounds(240, 200, 30, 20);
-        ok.setFont(kaiFont2);
-        cancel.setFont(kaiFont2);
+        textArea.setBounds(20, 20, 460, 360);
 
 
         
@@ -79,66 +45,46 @@ public class CheckUsers extends JDialog {
         getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
         background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
 
-        cancel.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                CheckUsers.this.dispose();
+
+
+                
+
+        Connection con = null;
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
+            //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
+
+            String sql = "select * from users";     // 根据页面的数据，生成查询学生的sql语句  ******
+            Statement stmt = con.createStatement();// 创建statement
+            ResultSet rs = stmt.executeQuery(sql); 
+            while(rs.next()){
+                String Name = rs.getString("user_name");
+                int Number = rs.getInt("rid");
+                String Sex = rs.getString("sex");
+                String Telephone = rs.getString("telephone");
+                String Age = rs.getString("age");
+                String Address = rs.getString("address");
+                textArea.append("姓名："+Name+"|"+"用户类型："+Number+"|"+"性别："+Sex);
+                textArea.append("\n");
+                textArea.append("电话："+Telephone+"|"+"年龄："+Age+"仓库位置："+Address);
+                textArea.append("\n");
             }
 
-        });
 
-        ok.addActionListener(new ActionListener() {
 
-            Connection con = null;
-            PreparedStatement statement = null;
-            ResultSet rs = null;
-
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
-                    // JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("select * from users");
-                    rs = statement.executeQuery();
-                    // 计算有多少条记录
-                    int count = 0;
-                    while (rs.next()) {
-                        count++;
-                    }
-                    rs = statement.executeQuery();
-                    // 将查询获得的记录数据，转换成适合生成JTable的数据形式
-                    final Object[][] info = new Object[count][8];
-                    count = 0;
-                    while (rs.next()) {
-                        info[count][0] = Integer.valueOf(rs.getInt("id"));
-                        info[count][1] = rs.getString("user_name");
-                        info[count][2] = rs.getString("user_pass");
-                        info[count][3] = Integer.valueOf(rs.getInt("rid"));
-                        info[count][4] = rs.getString("sex");
-                        info[count][5] = rs.getString("age");
-                        info[count][6] = rs.getString("telephone");
-                        info[count][7] = rs.getString("address");
-                        count++;
-                    }
+        }catch(Exception e2){
+            e2.printStackTrace();
+        }
 
 
 
-                } catch (final ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(CheckUsers.this, "驱动加载失败");
-                } catch (final SQLException e1) {
-                    JOptionPane.showMessageDialog(CheckUsers.this, "添加失败");
-                    e1.printStackTrace();
-                }
+            
 
-
-
-            }
-
-        });
+       
 
     }
 

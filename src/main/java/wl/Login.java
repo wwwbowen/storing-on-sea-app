@@ -168,6 +168,7 @@ public class Login extends JFrame {
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
                                 final CustomerFrame mainFrame3 = new CustomerFrame();
                                 mainFrame3.setVisible(true);
+                                Login.this.dispose();
 
                             }
                             if(state == "3"){

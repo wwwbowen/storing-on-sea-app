@@ -21,7 +21,7 @@ public class Select extends JDialog {
         this.setModal(true);
         this.setSize(500,400);
         this.setLocation(200, 200);
-        this.setTitle("仓库信息");
+        this.setTitle("库存货物信息");
         this.setLayout(null);
         this.setFont(kaiFont);
 
@@ -49,14 +49,17 @@ public class Select extends JDialog {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
             //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
 
-            String sql = "select * from warehouse";     // 根据页面的数据，生成查询学生的sql语句  ******
+            String sql = "select * from goods";     // 根据页面的数据，生成查询学生的sql语句  ******
             Statement stmt = con.createStatement();// 创建statement
             ResultSet rs = stmt.executeQuery(sql); 
             while(rs.next()){
                 int Id = rs.getInt("id");
                 String Goods = rs.getString("goods");
                 int Number = rs.getInt("number");
-                textArea.append("产品序号："+Id+"||"+"产品名称："+Goods+"||"+"产品数量："+Number);
+                String Address = rs.getString("address");
+                textArea.append("产品序号："+Id+"||"+"产品名称："+Goods);
+                textArea.append("\n");
+                textArea.append("产品价格："+Number+"||"+"存储仓库："+Address);
                 textArea.append("\n");
 
             }

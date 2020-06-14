@@ -23,17 +23,17 @@ public class Administrator extends JFrame {
     JMenuBar bar = new JMenuBar();
 
     JMenu menu_file = new JMenu("仓储管理");
-    JMenuItem menu_file_1 = new JMenuItem("查询仓库信息");
-    JMenuItem menu_file_2 = new JMenuItem("更改仓库信息");
-    JMenuItem menu_file_3 = new JMenuItem("添加仓库信息");
-    JMenuItem menu_file_4 = new JMenuItem("删除仓库信息");
+    JMenuItem menu_file_1 = new JMenuItem("查看仓库存储信息");
+    JMenuItem menu_file_2 = new JMenuItem("更改仓库存储信息");
+    JMenuItem menu_file_3 = new JMenuItem("添加仓库存储信息");
+    JMenuItem menu_file_4 = new JMenuItem("删除仓库存储信息");
 
     JMenu menu_user = new JMenu("用户管理");
     JMenuItem menu_user_1 = new JMenuItem("添加职员");
     JMenuItem menu_user_2 = new JMenuItem("搜索用户信息");
     JMenuItem menu_user_3 = new JMenuItem("添加管理员");
     JMenuItem menu_user_4 = new JMenuItem("删除用户");
-    JMenuItem menu_user_5 = new JMenuItem("查询用户信息");
+    JMenuItem menu_user_5 = new JMenuItem("查看用户信息");
     JMenuItem menu_user_6 = new JMenuItem("更改职员信息");
     JMenuItem menu_user_7 = new JMenuItem("更改管理员信息");
     JMenuItem menu_user_8 = new JMenuItem("密码修改");
@@ -146,45 +146,13 @@ public class Administrator extends JFrame {
 
         menu_user_5.addActionListener(new ActionListener() {
 
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            Connection con = null;
-
             @Override
             public void actionPerformed(final ActionEvent e) {
-
-
-
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    //JOptionPane.showMessageDialog(AddAnnoucement.this, "驱动加载成功");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
-                     //JOptionPane.showMessageDialog(AddAnnoucement.this, "数据库连接成功");
-
-                     ps = con.prepareStatement("select * from users");
-                     rs = ps.executeQuery();// 执行语句
-                     if(rs.next()){
-                        
-                        ann=rs.getString(1);
-
-                        a = rs.getString(1);
-                    
-                         
-                         rs.close();
-                         ps.close();
-                     }
-                 } catch (final ClassNotFoundException e1) {
-                     JOptionPane.showMessageDialog(Administrator.this, "驱动加载失败");
-                 } catch (final SQLException e1) {
-                    JOptionPane.showMessageDialog(Administrator.this, "添加失败");
-                    e1.printStackTrace();
-                }
                 new CheckUsers().setVisible(true);
             }
 
-            
-                
-            
+             
+              
 
         });
 

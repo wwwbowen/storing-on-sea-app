@@ -28,7 +28,7 @@ public class Search extends JDialog {
         this.setModal(true);
         this.setSize(400, 160);
         this.setLocation(300, 300);
-        this.setTitle("欢迎光临—商品搜索");
+        this.setTitle("海淘微客—商品搜索");
         this.setLayout(null);
 
         this.add(l_name);
@@ -79,7 +79,7 @@ public class Search extends JDialog {
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
                     
-                    ps = con.prepareStatement("select id from warehouse where goods= ?");
+                    ps = con.prepareStatement("select id from goods where goods= ?");
                     ps.setString(1, l1);
                     
                     rs = ps.executeQuery();// 执行语句
@@ -100,10 +100,10 @@ public class Search extends JDialog {
                try {
                 Class.forName("com.mysql.jdbc.Driver");
                 // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","sa","nicai");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                 //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
                 
-                ps = con.prepareStatement("select number from warehouse where goods= ?");
+                ps = con.prepareStatement("select number from goods where goods= ?");
                 ps.setString(1, l1);
                 
                 rs = ps.executeQuery();// 执行语句
@@ -120,10 +120,6 @@ public class Search extends JDialog {
                JOptionPane.showMessageDialog(Search.this, "错误！");
                e1.printStackTrace();
            }
-
-
-
-
 
                 new SearchResult().setVisible(true);
             }
