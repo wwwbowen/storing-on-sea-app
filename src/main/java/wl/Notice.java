@@ -15,7 +15,7 @@ public class Notice extends JDialog {
     private Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
     private final JTextField aa = new JTextField(20);
-    private JButton ok = new JButton("确定");
+    private JButton ok = new JButton("收到");
 
     public Notice(){
 

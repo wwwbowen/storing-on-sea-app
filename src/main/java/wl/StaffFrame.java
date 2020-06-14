@@ -102,7 +102,7 @@ public class StaffFrame extends JFrame {
 
         
         ((JComponent) getContentPane()).setOpaque(false);
-        final ImageIcon img = new ImageIcon("src/pic/back/2.jpg");
+        final ImageIcon img = new ImageIcon("src/main/images/海洋动图.gif");
         final JLabel background = new JLabel(img);
         getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
         background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
@@ -170,7 +170,7 @@ public class StaffFrame extends JFrame {
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","sa","nicai");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
                     
                     ps = con.prepareStatement("select * from ann");

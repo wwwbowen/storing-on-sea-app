@@ -39,16 +39,16 @@ public class DeleteAdmin extends JDialog {
 		l_name.setFont(kaiFont1);
 		t_name.setBounds(150, 60, 160, 40);
 
+		ok.setBounds(80, 200, 80, 40);
+		cancel.setBounds(240, 200, 80, 40);
+		ok.setFont(kaiFont1);
+		cancel.setFont(kaiFont1);
+
 		((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
 		final ImageIcon img = new ImageIcon("src/main/images/主背景.jpg"); // 传入背景图片路径
 		final JLabel background = new JLabel(img);// 将图片放进标签里
 		getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
 		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
-
-		ok.setBounds(80, 200, 80, 40);
-		cancel.setBounds(240, 200, 80, 40);
-		ok.setFont(kaiFont1);
-		cancel.setFont(kaiFont1);
 
 		cancel.addActionListener(new ActionListener() {
 

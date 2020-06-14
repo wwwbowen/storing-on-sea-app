@@ -52,15 +52,32 @@ public class CustomerFrame extends JFrame {
 
         menu_goods_search.setFont(kaiFont);
         menu_goods.add(menu_goods_search);
-
         
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img = new ImageIcon("src/main/images/施华洛世奇商品.jpg"); // 传入背景图片路径
+        JLabel label1 = new JLabel(img);
+        getContentPane().add(label1);
+        label1.setBounds(5,10,200,200);
 
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
-        final ImageIcon img = new ImageIcon("src/main/images/海洋动图.jpg"); // 传入背景图片路径
-        final JLabel background = new JLabel(img);// 将图片放进标签里
-        getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
-        background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
+        final ImageIcon img1 = new ImageIcon("src/main/images/LV商品.jpg"); // 传入背景图片路径 
+        JLabel label2 = new JLabel(img1);
+        getContentPane().add(label2);
+        label2.setBounds(215,10,200,200);
 
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img2 = new ImageIcon("src/main/images/AJ商品.jpg"); // 传入背景图片路径 
+        JLabel label3 = new JLabel(img2);
+        getContentPane().add(label3);
+        label3.setBounds(10,220,200,200);
+
+        ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
+        final ImageIcon img3 = new ImageIcon("src/main/images/表商品.jpg"); // 传入背景图片路径 
+        JLabel label4 = new JLabel(img3);
+        getContentPane().add(label4);
+        label4.setBounds(480,280,300,300);
+     
+    
         menu_user_exit.addActionListener(new ActionListener() {
 
             @Override
