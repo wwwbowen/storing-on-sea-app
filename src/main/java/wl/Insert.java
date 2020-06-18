@@ -20,6 +20,9 @@ public class Insert extends JDialog {
     private JLabel l_name2 = new JLabel("产品数量:");
     private JTextField t_name2 = new JTextField(12);
 
+    private JLabel l_name3 = new JLabel("产品价格:");
+    private JTextField t_name3 = new JTextField(12);
+
     private JButton ok = new JButton("确定");
     private JButton cancel = new JButton("取消");
 
@@ -39,6 +42,10 @@ public class Insert extends JDialog {
         l_name2.setFont(kaiFont);
         this.add(t_name2);
         t_name2.setFont(kaiFont);
+        this.add(l_name3);
+        l_name3.setFont(kaiFont);
+        this.add(t_name3);
+        t_name3.setFont(kaiFont);
         this.add(ok);
         ok.setFont(kaiFont);
         this.add(cancel);
@@ -48,6 +55,8 @@ public class Insert extends JDialog {
         t_name1.setBounds(170, 30, 170, 30);
         l_name2.setBounds(60, 90, 150, 30);
         t_name2.setBounds(170, 90, 170, 30);
+        l_name3.setBounds(60, 150, 150, 30);
+        t_name3.setBounds(170, 150, 170, 30);
         ok.setBounds(60, 190, 105, 40);
         cancel.setBounds(235, 190, 105, 40);
 
@@ -78,15 +87,17 @@ public class Insert extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String name1 = t_name1.getText();
                 String name2 = t_name2.getText();
+                String name3 = t_name3.getText();
                
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into warehouse values(null,?,?)");
+                    statement = con.prepareStatement("insert into goods values(null,?,?,?)");
                     statement.setString(1, name1);
                     statement.setString(2, name2);
+                    statement.setString(3, name3);
                     int result = statement.executeUpdate();
                     if(result > 0){
                         JOptionPane.showMessageDialog(Insert.this, "添加成功！");

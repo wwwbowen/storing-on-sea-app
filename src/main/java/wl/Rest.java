@@ -2,7 +2,7 @@ package wl;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.*;
 public class Rest extends JDialog {
 
     /**
@@ -25,6 +25,8 @@ public class Rest extends JDialog {
     private final JButton seat9 = new JButton("9");
     private final JButton seat10 = new JButton("10");
 
+
+
     public Rest(){
         this.setModal(true);
         this.setSize(450,200);
@@ -34,7 +36,6 @@ public class Rest extends JDialog {
 
         this.add(tip);
         tip.setFont(kaiFont);
-
         this.add(seat1);
         seat1.setFont(kaiFont);
         this.add(seat2);
@@ -68,6 +69,8 @@ public class Rest extends JDialog {
         seat9.setBounds(280, 162, 60, 25);
         seat10.setBounds(365, 162, 60, 25);
 
+
+
         
 
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
@@ -75,6 +78,150 @@ public class Rest extends JDialog {
         final JLabel background = new JLabel(img);// 将图片放进标签里
         getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));// 将标签放进容器里
         background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());// 设置标签的大小
+
+
+        seat1.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat1) {
+                    seat1.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+
+        seat2.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat2) {
+                    seat2.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat3.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat3) {
+                    seat3.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat4.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat4) {
+                    seat4.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat5.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat5) {
+                    seat5.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat6.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat6) {
+                    seat6.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat7.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat7) {
+                    seat7.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat8.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat8) {
+                    seat8.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat9.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat9) {
+                    seat9.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        seat10.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Rest.this, "预约成功");
+                if (e.getSource() == seat10) {
+                    seat10.setBackground(Color.red);
+                } 
+                
+            }
+
+
+        });
+
+        
         
     }
     

@@ -37,10 +37,12 @@ public class SearchResult extends JDialog {
         l_bb.setFont(kaiFont);
         this.add(bb);
         bb.setFont(kaiFont);
+        bb.setEditable(false);
         this.add(l_cc);
         l_cc.setFont(kaiFont);
         this.add(cc);
         cc.setFont(kaiFont);
+        cc.setEditable(false);
         this.add(ok);
         ok.setFont(kaiFont);
 

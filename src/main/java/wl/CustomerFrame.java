@@ -16,8 +16,8 @@ public class CustomerFrame extends JFrame {
     JMenuBar bar = new JMenuBar();
 
     JMenu menu_user = new JMenu("用户      ");
-    JMenuItem menu_user_exit = new JMenuItem("注销登录");
-    JMenuItem menu_user_quit = new JMenuItem("退出登录");
+    JMenuItem menu_user_exit = new JMenuItem("更换用户");
+    JMenuItem menu_user_quit = new JMenuItem("退出程序");
     JMenuItem menu_user_passchange = new JMenuItem("修改密码");
 
     JMenu menu_goods = new JMenu("商品      ");

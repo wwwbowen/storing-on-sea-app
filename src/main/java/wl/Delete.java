@@ -74,7 +74,7 @@ public class Delete extends JDialog {
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("delete from warehouse where goods = ?");
+                    statement = con.prepareStatement("delete from goods where goods = ?");
                     statement.setString(1, name);
                     int result = statement.executeUpdate();
                     if(result > 0){

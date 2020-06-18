@@ -25,7 +25,7 @@ public class UpdateName extends JDialog{
 
     public UpdateName() {
         this.setModal(true);
-        this.setSize(700, 170);
+        this.setSize(500, 170);
         this.setLocation(200, 200);
         this.setTitle("修改产品名称");
         this.setLayout(null);
@@ -45,9 +45,9 @@ public class UpdateName extends JDialog{
         cancel.setFont(kaiFont);
 
         l_name1.setBounds(20, 20, 200, 30);
-        t_name1.setBounds(220, 20, 460, 30);
+        t_name1.setBounds(220, 20, 250, 30);
         l_name2.setBounds(20, 60, 200, 30);
-        t_name2.setBounds(220, 60, 460, 30);
+        t_name2.setBounds(220, 60, 250, 30);
         ok.setBounds(20, 110, 100, 40);
         cancel.setBounds(580, 110, 100, 40);
 
@@ -85,7 +85,7 @@ public class UpdateName extends JDialog{
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("update warehouse set goods = ? where goods = ?");
+                    statement = con.prepareStatement("update goods set goods = ? where goods = ?");
                     statement.setString(1, name2);
                     statement.setString(2, name1);
                     int result = statement.executeUpdate();
