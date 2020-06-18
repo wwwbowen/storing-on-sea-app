@@ -133,7 +133,7 @@ public class StaffFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new PassChange().setVisible(true);
+                new Alterpassword1().setVisible(true);
 
             }
 

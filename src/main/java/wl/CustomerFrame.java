@@ -105,7 +105,7 @@ public class CustomerFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new PassChange().setVisible(true);
+                new Alterpassword2().setVisible(true);
 
             }
 

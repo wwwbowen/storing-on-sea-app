@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class Alterpassword extends JDialog {
+public class Alterpassword1 extends JDialog {
 
     private static final long serialVersionUID = -5116968700267175491L;
 
@@ -25,7 +25,7 @@ public class Alterpassword extends JDialog {
 
 
 
-    public Alterpassword() {
+    public Alterpassword1() {
        
         this.setModal(true);
         this.setSize(400,300);
@@ -70,7 +70,7 @@ public class Alterpassword extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Alterpassword.this.dispose();
+                Alterpassword1.this.dispose();
             }
 
         });
@@ -91,7 +91,7 @@ public class Alterpassword extends JDialog {
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
-                    statement1 = con.prepareStatement("select count(*) from users where user_name= ? ");
+                    statement1 = con.prepareStatement("select count(*) from users where user_name= ? and rid = 3");
                     statement1.setString(1, uname);
 
                    rs = statement1.executeQuery();
@@ -99,13 +99,13 @@ public class Alterpassword extends JDialog {
                     final int result = rs.getInt(1);
                     if (result == 1) {
                         
-                            if(!upass.equals(repass)){JOptionPane.showMessageDialog(Alterpassword.this, "请保证两次输入的密码相同！");}
+                            if(!upass.equals(repass)){JOptionPane.showMessageDialog(Alterpassword1.this, "请保证两次输入的密码相同！");}
                             else {
                             statement2 = con.prepareStatement("update users set user_pass = ? where user_name = ?  ");
                             statement2.setString(1, upass);
                             statement2.setString(2, uname);
                             int rss =statement2.executeUpdate();
-                            if(rss >0){JOptionPane.showMessageDialog(Alterpassword.this, "修改成功！");
+                            if(rss >0){JOptionPane.showMessageDialog(Alterpassword1.this, "修改成功！");
                             t_name.setText("");
                             t_pass.setText("");
                             t_repass.setText("");
@@ -115,7 +115,7 @@ public class Alterpassword extends JDialog {
 
                             
                     } else {
-                        JOptionPane.showMessageDialog(Alterpassword.this, "没有此用户！");
+                        JOptionPane.showMessageDialog(Alterpassword1.this, "没有此职员！");
                         t_name.setText("");
                         t_pass.setText("");
                     }
@@ -134,9 +134,9 @@ public class Alterpassword extends JDialog {
 
 
                 } catch (ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(Alterpassword.this, "驱动加载失败");
+                    JOptionPane.showMessageDialog(Alterpassword1.this, "驱动加载失败");
                 } catch (SQLException e1) {
-                    JOptionPane.showMessageDialog(Alterpassword.this, "添加失败");
+                    JOptionPane.showMessageDialog(Alterpassword1.this, "添加失败");
                     e1.printStackTrace();
                 }
             

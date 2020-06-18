@@ -81,11 +81,11 @@ public class AddEmployee extends JDialog {
                 final String uname = t_name.getText();
                 final String upass = new String(t_pass.getPassword());
                 final String repass = new String(t_repass.getPassword());
-                if (uname.length() < 2) {
+                if (uname.length() < 1) {
                     JOptionPane.showMessageDialog(AddEmployee.this, "用户名长度必须大于等于两字符！");
                     return;
                 }
-                if (upass.length() < 2) {
+                if (upass.length() < 1) {
                     JOptionPane.showMessageDialog(AddEmployee.this, "密码必须大于等于两字符！");
                     return;
                 }
