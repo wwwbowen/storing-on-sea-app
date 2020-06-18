@@ -11,7 +11,7 @@ public class Alterpassword2 extends JDialog {
 
     private Font kaiFont1 = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
-    private JLabel l_name = new JLabel("用户名:");
+    private JLabel l_name = new JLabel("原密码:");
     private JTextField t_name = new JTextField(12);
 
     private JLabel l_pass = new JLabel("新密码:");
@@ -65,7 +65,6 @@ public class Alterpassword2 extends JDialog {
         getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
         background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 
-
         cancel.addActionListener(new ActionListener(){
 
             @Override
@@ -81,6 +80,9 @@ public class Alterpassword2 extends JDialog {
             PreparedStatement statement1 = null;
             PreparedStatement statement2 = null;
             ResultSet rs = null;
+
+
+    
             @Override
             public void actionPerformed(ActionEvent e) {
                 final String uname = t_name.getText();
@@ -91,8 +93,9 @@ public class Alterpassword2 extends JDialog {
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC", "bwwu", "292504");
-                    statement1 = con.prepareStatement("select count(*) from users where user_name= ? and rid = 1");
-                    statement1.setString(1, uname);
+                    statement1 = con.prepareStatement("select count(*) from users where user_name= ? and rid = 1 and user_pass = ?");
+                    statement1.setString(1, Login.name);
+                    statement1.setString(2, uname);
 
                    rs = statement1.executeQuery();
                    if (rs.next()) {
@@ -103,7 +106,7 @@ public class Alterpassword2 extends JDialog {
                             else {
                             statement2 = con.prepareStatement("update users set user_pass = ? where user_name = ?  ");
                             statement2.setString(1, upass);
-                            statement2.setString(2, uname);
+                            statement2.setString(2, Login.name);
                             int rss =statement2.executeUpdate();
                             if(rss >0){JOptionPane.showMessageDialog(Alterpassword2.this, "修改成功！");
                             t_name.setText("");
@@ -115,9 +118,10 @@ public class Alterpassword2 extends JDialog {
 
                             
                     } else {
-                        JOptionPane.showMessageDialog(Alterpassword2.this, "没有此客户！");
+                        JOptionPane.showMessageDialog(Alterpassword2.this, "原密码错误！");
                         t_name.setText("");
                         t_pass.setText("");
+                        t_repass.setText("");
                     }
                 }
                 if (rs != null) {

@@ -45,7 +45,6 @@ public class Administrator extends JFrame {
     private final Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
     public static String a;
-    public static String b[][];
 
     public Administrator() {
 

@@ -45,7 +45,7 @@ public class Login extends JFrame {
     private final Font kaiFont_2 = new Font("AR PL UKai TW MBE", Font.PLAIN, 30);
     private final String[] boxOptions = {"客 户","管理员","职 员"};
     private final JComboBox<String> box = new JComboBox<>(boxOptions);
-
+    public static String name;
    
 
 
@@ -160,12 +160,14 @@ public class Login extends JFrame {
                         if (result == 1) {
                             if(state == "2") {
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
+                                name = uname;
                             final Administrator mainFrame = new Administrator();
                             mainFrame.setVisible(true);
                             Login.this.dispose();
                             }
                             if(state == "1"){
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
+                                name = uname;
                                 final CustomerFrame mainFrame3 = new CustomerFrame();
                                 mainFrame3.setVisible(true);
                                 Login.this.dispose();
@@ -173,6 +175,7 @@ public class Login extends JFrame {
                             }
                             if(state == "3"){
                                 JOptionPane.showMessageDialog(Login.this, "登录成功！");
+                                name = uname;
                                 final StaffFrame mainFrame2 = new StaffFrame();
                                 mainFrame2.setVisible(true);
                                 Login.this.dispose();
