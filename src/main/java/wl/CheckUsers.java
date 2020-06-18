@@ -36,7 +36,7 @@ public class CheckUsers extends JDialog {
         textArea.setFont(kaiFont);
 
         textArea.setBounds(20, 20, 460, 360);
-
+        textArea.setEditable(false);
 
         
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
@@ -70,7 +70,7 @@ public class CheckUsers extends JDialog {
                 String Address = rs.getString("address");
                 textArea.append("姓名："+Name+"|"+"用户类型："+Number+"|"+"性别："+Sex);
                 textArea.append("\n");
-                textArea.append("电话："+Telephone+"|"+"年龄："+Age+"仓库位置："+Address);
+                textArea.append("电话："+Telephone+"|"+"年龄："+Age+"|"+"仓库位置："+Address);
                 textArea.append("\n");
             }
 

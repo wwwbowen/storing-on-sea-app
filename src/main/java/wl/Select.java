@@ -29,6 +29,7 @@ public class Select extends JDialog {
         textArea.setFont(kaiFont);
 
         textArea.setBounds(20, 20, 460, 360);
+        textArea.setEditable(false);
 
         
 

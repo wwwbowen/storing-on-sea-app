@@ -79,7 +79,7 @@ public class DeleteWarehouse extends JDialog {
 					if (rs.next()) {
 						final int result = rs.getInt(1);
 						if (result == 1) {
-							statement = con.prepareStatement("delete from users where user_name = ? ");
+							statement = con.prepareStatement("delete from warehouse where id = ? ");
 							statement.setString(1, uname);
 							final int res = statement.executeUpdate();
 							if (res > 0) {

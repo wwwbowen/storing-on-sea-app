@@ -126,7 +126,7 @@ public class AddWarehouse extends JDialog {
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("insert into users values(?, ?, ?, ?, ?)");
+                    statement = con.prepareStatement("insert into warehouse values(?, ?, ?, ?, ?)");
                     statement.setString(1, uname);
                     statement.setString(5, uage);
                     statement.setString(4, usex);

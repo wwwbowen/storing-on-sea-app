@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;  
 
-public class SelectUsers extends JDialog {
+public class SlectUsers extends JDialog {
 
     /**
      *
@@ -14,7 +14,7 @@ public class SelectUsers extends JDialog {
 
     private final Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 30);
 
-    private final JLabel l_name = new JLabel("请输入想要查询的用户名:");
+    private final JLabel l_name = new JLabel("请输入商品名称:");
     private final JTextField t_name = new JTextField(30);
 
     private final JButton ok = new JButton("搜索");
@@ -24,7 +24,7 @@ public class SelectUsers extends JDialog {
     public static String c;
 
 
-    public SelectUsers() {
+    public SlectUsers() {
         this.setModal(true);
         this.setSize(400, 160);
         this.setLocation(300, 300);
@@ -56,7 +56,7 @@ public class SelectUsers extends JDialog {
 
             @Override
             public void actionPerformed(final ActionEvent e) {
-                SelectUsers.this.dispose();
+                SlectUsers.this.dispose();
 
             }
 
@@ -79,7 +79,7 @@ public class SelectUsers extends JDialog {
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
                     
-                    ps = con.prepareStatement("select sex from users where user_name = ?");
+                    ps = con.prepareStatement("select id from goods where goods= ?");
                     ps.setString(1, l1);
                     
                     rs = ps.executeQuery();// 执行语句
@@ -91,9 +91,9 @@ public class SelectUsers extends JDialog {
                         ps.close();
                     }
                 } catch (final ClassNotFoundException e1) {
-                    JOptionPane.showMessageDialog(SelectUsers.this, "驱动加载失败");
+                    JOptionPane.showMessageDialog(SlectUsers.this, "驱动加载失败");
                 } catch (final SQLException e1) {
-                   JOptionPane.showMessageDialog(SelectUsers.this, "错误！");
+                   JOptionPane.showMessageDialog(SlectUsers.this, "错误！");
                    e1.printStackTrace();
                }
 
@@ -103,7 +103,7 @@ public class SelectUsers extends JDialog {
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                 //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
                 
-                ps = con.prepareStatement("select telephone from users where user_name = ?");
+                ps = con.prepareStatement("select number from goods where goods= ?");
                 ps.setString(1, l1);
                 
                 rs = ps.executeQuery();// 执行语句
@@ -115,9 +115,9 @@ public class SelectUsers extends JDialog {
                     ps.close();
                 }
             } catch (final ClassNotFoundException e1) {
-                JOptionPane.showMessageDialog(SelectUsers.this, "驱动加载失败");
+                JOptionPane.showMessageDialog(SlectUsers.this, "驱动加载失败");
             } catch (final SQLException e1) {
-               JOptionPane.showMessageDialog(SelectUsers.this, "错误！");
+               JOptionPane.showMessageDialog(SlectUsers.this, "错误！");
                e1.printStackTrace();
            }
 

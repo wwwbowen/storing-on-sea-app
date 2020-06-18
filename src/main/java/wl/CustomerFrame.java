@@ -2,8 +2,7 @@ package wl;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * MainFrame
@@ -21,10 +20,8 @@ public class CustomerFrame extends JFrame {
     JMenuItem menu_user_quit = new JMenuItem("退出登录");
     JMenuItem menu_user_passchange = new JMenuItem("修改密码");
 
-
     JMenu menu_goods = new JMenu("商品      ");
     JMenuItem menu_goods_search = new JMenuItem("搜索商品");
-
 
     private final Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
@@ -43,7 +40,7 @@ public class CustomerFrame extends JFrame {
 
         menu_user_quit.setFont(kaiFont);
         menu_user.add(menu_user_quit);
-        
+
         menu_user_passchange.setFont(kaiFont);
         menu_user.add(menu_user_passchange);
 
@@ -52,40 +49,37 @@ public class CustomerFrame extends JFrame {
 
         menu_goods_search.setFont(kaiFont);
         menu_goods.add(menu_goods_search);
-        
+
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
         final ImageIcon img = new ImageIcon("src/main/images/施华洛世奇商品.jpg"); // 传入背景图片路径
         JLabel label1 = new JLabel(img);
         getContentPane().add(label1);
-        label1.setBounds(20,20,370,270);
+        label1.setBounds(20, 20, 370, 270);
 
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
-        final ImageIcon img1 = new ImageIcon("src/main/images/LV商品.jpg"); // 传入背景图片路径 
+        final ImageIcon img1 = new ImageIcon("src/main/images/LV商品.jpg"); // 传入背景图片路径
         JLabel label2 = new JLabel(img1);
         getContentPane().add(label2);
-        label2.setBounds(410,20,370,270);
+        label2.setBounds(410, 20, 370, 270);
 
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
-        final ImageIcon img2 = new ImageIcon("src/main/images/AJ商品.jpg"); // 传入背景图片路径 
+        final ImageIcon img2 = new ImageIcon("src/main/images/AJ商品.jpg"); // 传入背景图片路径
         JLabel label3 = new JLabel(img2);
         getContentPane().add(label3);
-        label3.setBounds(410,310,370,270);
+        label3.setBounds(410, 310, 370, 270);
 
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
-        final ImageIcon img3 = new ImageIcon("src/main/images/222.png"); // 传入背景图片路径 
+        final ImageIcon img3 = new ImageIcon("src/main/images/222.png"); // 传入背景图片路径
         JLabel label4 = new JLabel(img3);
         getContentPane().add(label4);
-        label4.setBounds(20,310,370,270);
+        label4.setBounds(20, 310, 370, 270);
 
         ((JComponent) getContentPane()).setOpaque(false); // 将框架强转为容器
-        final ImageIcon img5 = new ImageIcon("src/main/images/333.png"); // 传入背景图片路径 
+        final ImageIcon img5 = new ImageIcon("src/main/images/333.png"); // 传入背景图片路径
         JLabel label5 = new JLabel(img5);
         getContentPane().add(label5);
-        label5.setBounds(0,0,0,0);
+        label5.setBounds(0, 0, 0, 0);
 
-
-     
-    
         menu_user_exit.addActionListener(new ActionListener() {
 
             @Override
@@ -117,14 +111,142 @@ public class CustomerFrame extends JFrame {
 
         });
 
-        menu_goods_search.addActionListener(new ActionListener(){
+        menu_goods_search.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new Search().setVisible(true);
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Search().setVisible(true);
+            }
 
         });
+
+        label1.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                final Buy mainFrame = new Buy();
+                mainFrame.setVisible(true);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+              
+
+            }
+        });
+
+        label2.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                final Buy mainFrame = new Buy();
+                mainFrame.setVisible(true);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+              
+
+            }
+        });
+        label3.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                final Buy mainFrame = new Buy();
+                mainFrame.setVisible(true);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+              
+
+            }
+        });
+        label4.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                final Buy mainFrame = new Buy();
+                mainFrame.setVisible(true);
+
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+              
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+              
+
+            }
+        });
+
     }
     
 }

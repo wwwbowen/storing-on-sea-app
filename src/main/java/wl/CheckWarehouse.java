@@ -34,8 +34,8 @@ public class CheckWarehouse extends JDialog {
 
         this.add(textArea);
         textArea.setFont(kaiFont);
-
         textArea.setBounds(20, 20, 460, 360);
+        textArea.setEditable(false);
 
 
         
