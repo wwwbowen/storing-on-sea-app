@@ -14,7 +14,7 @@ public class AddWarehouse extends JDialog {
     private JLabel ID = new JLabel("仓库ID:");
     private JTextField t_name = new JTextField(12);
 
-    private JLabel l_pass = new JLabel("存储类型:");
+    private JLabel l_pass = new JLabel("类型:");
     private JTextField t_pass = new JTextField(12);
 
     private JLabel l_sex = new JLabel("数 量:");
@@ -34,7 +34,7 @@ public class AddWarehouse extends JDialog {
         this.setModal(true);
         this.setSize(400,400);
         this.setLocation(575,280);
-        this.setTitle("更改仓库存储信息");
+        this.setTitle("添加仓库存储信息");
         this.setLayout(null);
 
         this.add(ID);

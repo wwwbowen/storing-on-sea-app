@@ -14,7 +14,7 @@ public class AlterWarehouse extends JDialog {
     private JLabel ID = new JLabel("仓库ID:");
     private JTextField t_name = new JTextField(12);
 
-    private JLabel l_pass = new JLabel("存储类型:");
+    private JLabel l_pass = new JLabel("类型:");
     private JTextField t_pass = new JTextField(12);
 
     private JLabel l_sex = new JLabel("数 量:");
@@ -126,7 +126,7 @@ public class AlterWarehouse extends JDialog {
                     // JOptionPane.showMessageDialog(Login.this, "驱动加载成功");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC","bwwu","292504");
                     //JOptionPane.showMessageDialog(Login.this, "数据库连接成功");
-                    statement = con.prepareStatement("update users set price = ? , number = ? , cargotype =? , address = ? where id = ? ");
+                    statement = con.prepareStatement("update warehouse set price = ? , number = ? , cargotype =? , address = ? where id = ? ");
                     statement.setString(5, uname);
                     statement.setString(1, uage);
                     statement.setString(2, usex);
