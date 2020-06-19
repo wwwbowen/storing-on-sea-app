@@ -84,11 +84,11 @@ public class AddAdmin extends JDialog {
                 String uname = t_name.getText();
                 String upass = new String(t_pass.getPassword());
                 String repass = new String(t_repass.getPassword());
-                if(uname.length() < 2) {
+                if(uname.length() < 1) {
                     JOptionPane.showMessageDialog(AddAdmin.this, "管理员名称需大于两字符！");
                     return;
                 }
-                if(upass.length() < 2) {
+                if(upass.length() < 1) {
                     JOptionPane.showMessageDialog(AddAdmin.this, "密码长度需大于两字符！");
                     return;
                 }

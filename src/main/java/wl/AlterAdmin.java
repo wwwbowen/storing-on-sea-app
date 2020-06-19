@@ -112,11 +112,11 @@ public class AlterAdmin extends JDialog {
                 String utelephone = t_telephone.getText();
                 String uaddress = t_address.getText();
                 String upass = new String(t_pass.getPassword());
-                if(uname.length() < 2) {
+                if(uname.length() < 1) {
                     JOptionPane.showMessageDialog(AlterAdmin.this, "用户名必须大于两字符！");
                     return;
                 }
-                if(upass.length() < 2) {
+                if(upass.length() < 1) {
                     JOptionPane.showMessageDialog(AlterAdmin.this, "密码长度必须大于两字符！");
                     return;
                 }

@@ -13,10 +13,12 @@ public class SearchResult extends JDialog {
     
     private Font kaiFont = new Font("AR PL UKai CN", Font.PLAIN, 20);
 
-    private JLabel l_bb = new JLabel("产品序号:");
+    private JLabel l_bb = new JLabel("储存仓库:");
     private JLabel l_cc = new JLabel("产品价格:");
     private final JTextField bb = new JTextField(20);
     private final JTextField cc = new JTextField(20);
+
+
 
     private JButton ok = new JButton("确定");
 
