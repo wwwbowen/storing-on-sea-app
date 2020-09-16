@@ -136,6 +136,8 @@ public class AddAnnoucement extends JDialog {
                  } catch (final SQLException e1) {
                     JOptionPane.showMessageDialog(AddAnnoucement.this, "添加失败");
                     e1.printStackTrace();
+           
+           
                 }
             
                 
